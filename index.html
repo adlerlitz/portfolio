@@ -41,7 +41,6 @@
       outline-offset: 4px;
     }
 
-    /* NAV */
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -92,7 +91,6 @@
 
     .nav-contact:hover { background: rgba(255,255,255,0.07); }
 
-    /* HERO */
     .hero {
       min-height: 100vh;
       background: var(--green-deep);
@@ -155,12 +153,7 @@
       animation: up 0.8s 0.2s ease both;
     }
 
-    .hero-divider-line {
-      width: 60px;
-      height: 1px;
-      background: var(--green-soft);
-      flex-shrink: 0;
-    }
+    .hero-divider-line { width: 60px; height: 1px; background: var(--green-soft); flex-shrink: 0; }
 
     .hero-subtitle {
       font-family: 'Cormorant Garamond', serif;
@@ -206,7 +199,6 @@
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    /* BUTTONS */
     .btn {
       display: inline-block;
       padding: 0.75rem 1.75rem;
@@ -230,7 +222,6 @@
     .btn-dark { background: var(--green-deep); color: var(--cream); }
     .btn-dark:hover { background: var(--green-mid); transform: translateY(-2px); }
 
-    /* SECTIONS */
     .section { padding: clamp(5rem, 10vw, 9rem) clamp(1.5rem, 7vw, 7rem); }
 
     .section-cream  { background: var(--cream); }
@@ -265,7 +256,6 @@
     .section-rule { width: 36px; height: 1px; background: var(--rule); margin: 1.25rem 0 0; }
     .section-rule-light { background: rgba(200,222,196,0.4); }
 
-    /* HONEYCOMB */
     .honeycomb-grid {
       display: grid;
       grid-template-columns: 3fr 2fr;
@@ -304,7 +294,6 @@
     .tag-green { border-color: var(--green-pale); color: var(--green-mid); background: var(--green-ghost); }
     .tag-light { border-color: rgba(200,222,196,0.3); color: var(--green-pale); }
 
-    /* SAPSORROW */
     .sapsorrow-grid {
       display: grid;
       grid-template-columns: 2fr 3fr;
@@ -315,7 +304,7 @@
     .chart-frame {
       border: 1px solid var(--rule);
       border-radius: 3px;
-      background: #ffffff;
+      background: transparent;
       overflow: hidden;
     }
 
@@ -339,7 +328,11 @@
       object-fit: contain;
       object-position: top;
       display: block;
+      cursor: pointer;
+      transition: opacity 0.2s;
     }
+
+    .chart-frame img:hover { opacity: 0.85; }
 
     .pullquote {
       font-family: 'Cormorant Garamond', serif;
@@ -353,7 +346,47 @@
       margin: 2rem 0;
     }
 
-    /* ABOUT */
+    /* LIGHTBOX */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      background: rgba(19, 28, 27, 0.92);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+      cursor: zoom-out;
+    }
+
+    .lightbox.active { opacity: 1; pointer-events: auto; }
+
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 90vh;
+      object-fit: contain;
+      border-radius: 3px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.4);
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 1.25rem;
+      right: 1.5rem;
+      background: none;
+      border: none;
+      color: var(--cream);
+      font-size: 1.5rem;
+      cursor: pointer;
+      opacity: 0.7;
+      transition: opacity 0.2s;
+      font-family: 'Outfit', sans-serif;
+    }
+
+    .lightbox-close:hover { opacity: 1; }
+
     .about-grid {
       display: grid;
       grid-template-columns: 220px 1fr;
@@ -388,7 +421,6 @@
 
     .about-text p { color: var(--green-pale); margin-bottom: 1.1rem; font-size: 1.02rem; }
 
-    /* WOODS */
     .woods-inner {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -428,7 +460,6 @@
 
     .twine-choice:hover { border-color: rgba(255,255,255,0.2); color: var(--green-pale); background: rgba(255,255,255,0.04); }
 
-    /* CREDITS */
     .credits-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
 
     .credit-card {
@@ -497,7 +528,6 @@
     .credit-body { padding: 1.25rem; flex: 1; }
     .credit-body p { font-size: 0.9rem; color: var(--ink-mid); line-height: 1.7; }
 
-    /* WRITING */
     .writing-grid {
       display: grid;
       grid-template-columns: 1fr 260px;
@@ -532,7 +562,6 @@
       font-style: italic;
     }
 
-    /* FOOTER */
     .footer {
       background: var(--green-deep);
       padding: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 7vw, 7rem);
@@ -598,7 +627,6 @@
     .footer-links a:hover { color: var(--cream); }
     .footer-copy { font-size: 0.72rem; color: var(--green-soft); }
 
-    /* REVEAL */
     .js .reveal {
       opacity: 0;
       transform: translateY(22px);
@@ -609,7 +637,6 @@
     .js .reveal.d1 { transition-delay: 0.12s; }
     .js .reveal.d2 { transition-delay: 0.24s; }
 
-    /* MARQUEE */
     .marquee-strip {
       background: var(--green-mid);
       overflow: hidden;
@@ -632,18 +659,13 @@
       padding: 0 2.5rem;
     }
 
-    .marquee-track span.dot {
-      color: var(--green-soft);
-      padding: 0;
-      letter-spacing: 0;
-    }
+    .marquee-track span.dot { color: var(--green-soft); padding: 0; letter-spacing: 0; }
 
     @keyframes marquee {
       from { transform: translateX(0); }
       to   { transform: translateX(-50%); }
     }
 
-    /* RESPONSIVE */
     @media (max-width: 800px) {
       .honeycomb-grid, .sapsorrow-grid, .about-grid,
       .writing-grid, .credits-grid, .woods-inner { grid-template-columns: 1fr; }
@@ -671,7 +693,6 @@
 
 <main>
 
-  <!-- HERO -->
   <section id="top" class="hero">
     <div class="hero-bg-text" aria-hidden="true">AM</div>
     <div class="hero-inner">
@@ -698,7 +719,6 @@
     </div>
   </section>
 
-  <!-- MARQUEE -->
   <div class="marquee-strip" aria-hidden="true">
     <div class="marquee-track">
       <span>Narrative Design</span><span class="dot">·</span>
@@ -720,7 +740,6 @@
     </div>
   </div>
 
-  <!-- 01 HONEYCOMB -->
   <section id="honeycomb" class="section section-light">
     <div class="section-header reveal">
       <p class="section-num">01 — Featured Project</p>
@@ -753,7 +772,6 @@
     </div>
   </section>
 
-  <!-- 02 SAPSORROW -->
   <section id="sapsorrow" class="section section-cream">
     <div class="section-header reveal">
       <p class="section-num">02 — Systems Showcase</p>
@@ -774,17 +792,16 @@
       <div class="reveal d1">
         <div class="chart-frame">
           <div class="chart-label">Dialogue Map</div>
-          <img src="https://raw.githubusercontent.com/adlerlitz/portfolio/refs/heads/main/mournstead_light.png" alt="Sapsorrow dialogue map">
+          <img src="https://raw.githubusercontent.com/adlerlitz/portfolio/refs/heads/main/mournstead_light.png" alt="Sapsorrow dialogue map" data-lightbox>
         </div>
         <div class="chart-frame">
           <div class="chart-label">Consequence Flowchart</div>
-          <img src="https://raw.githubusercontent.com/adlerlitz/portfolio/refs/heads/main/mournstead_consequences_light.png" alt="Sapsorrow consequence flowchart">
+          <img src="https://raw.githubusercontent.com/adlerlitz/portfolio/refs/heads/main/mournstead_consequences_light.png" alt="Sapsorrow consequence flowchart" data-lightbox>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 03 ABOUT -->
   <section id="about" class="section section-green">
     <div class="section-header reveal">
       <p class="section-num section-num-light">03 — About Me</p>
@@ -793,7 +810,6 @@
     </div>
     <div class="about-grid">
       <div class="photo-wrap reveal">
-        <!-- REPLACE with your photo: <img src="YOUR_PHOTO_URL" alt="Aleksandra Matlak" class="photo-frame"> -->
         <div class="photo-placeholder">
           <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
             <circle cx="22" cy="15" r="9" fill="#C8DEC4" opacity="0.4"/>
@@ -811,13 +827,11 @@
           <span class="tag tag-light">UE5 / Unity</span>
           <span class="tag tag-light">Localisation</span>
         </div>
-        <!-- REPLACE with your email -->
         <a href="mailto:your@email.com" class="btn btn-cream">Send me an email</a>
       </div>
     </div>
   </section>
 
-  <!-- 04 THROUGH THE WOODS -->
   <section id="woods" class="section section-cream">
     <div class="section-header reveal">
       <p class="section-num">04 — Interactive Work</p>
@@ -829,7 +843,6 @@
         <div class="woods-text reveal">
           <p>A short choose-your-own-adventure built in Twine. Character-driven and atmospheric, structured around a single irreversible choice. Play time is under ten minutes.</p>
           <p style="margin-bottom:2rem;">It's a quieter piece — written to explore how much weight a small moment can carry when the player holds the pen.</p>
-          <!-- REPLACE with your itch.io link -->
           <a href="https://itch.io" target="_blank" rel="noopener" class="btn btn-outline">Play on itch.io →</a>
         </div>
         <div class="twine-frame reveal d1">
@@ -843,7 +856,6 @@
     </div>
   </section>
 
-  <!-- 05 CREDITS -->
   <section id="credits" class="section section-light">
     <div class="section-header reveal">
       <p class="section-num">05 — Shipped Titles</p>
@@ -853,7 +865,6 @@
     <div class="credits-grid">
       <div class="credit-card reveal">
         <div class="credit-img-wrap">
-          <!-- REPLACE with: <img src="YOUR_SCREENSHOT_URL" alt="Hairdresser Simulator"> -->
           <div class="credit-img-placeholder">Screenshot</div>
           <div class="credit-floating-title">
             <span>Released</span>
@@ -866,7 +877,6 @@
       </div>
       <div class="credit-card reveal d1">
         <div class="credit-img-wrap">
-          <!-- REPLACE with: <img src="YOUR_SCREENSHOT_URL" alt="House Flipper Remastered"> -->
           <div class="credit-img-placeholder">Screenshot</div>
           <div class="credit-floating-title">
             <span>Released</span>
@@ -880,7 +890,6 @@
     </div>
   </section>
 
-  <!-- 06 WRITING -->
   <section id="writing" class="section section-cream">
     <div class="section-header reveal">
       <p class="section-num">06 — Personal Writing</p>
@@ -891,15 +900,12 @@
       <div class="reveal">
         <p style="color:var(--ink-mid);">Fiction has always run alongside my games work — offered here as a sample of voice, prose rhythm, and how I handle character interiority and atmosphere outside the constraints of interactive format.</p>
         <blockquote class="writing-excerpt">
-          <!-- REPLACE WITH 2–4 SENTENCES FROM YOUR WRITING -->
           Your writing excerpt goes here — two to four sentences with atmosphere and character. Something that shows your voice.
         </blockquote>
         <p style="color:var(--ink-soft);font-size:0.9rem;margin-bottom:2rem;">The full sample covers approximately [X] pages. Available via the link below or on request.</p>
-        <!-- REPLACE with your PDF or hosted doc link -->
         <a href="#" class="btn btn-dark">Read full sample →</a>
       </div>
       <div class="reveal d1">
-        <!-- REPLACE with an actual image, or remove this column -->
         <div class="writing-side-img"><span style="font-size:0.9rem;font-style:italic;">Image</span></div>
       </div>
     </div>
@@ -907,7 +913,6 @@
 
 </main>
 
-<!-- FOOTER / CONTACT -->
 <footer id="contact" class="footer">
   <div class="footer-top">
     <div>
@@ -916,13 +921,11 @@
     </div>
     <div style="text-align:right;">
       <p style="font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--green-soft);margin-bottom:0.5rem;">Get in touch</p>
-      <!-- REPLACE with your email -->
       <a href="mailto:your@email.com" class="footer-email">your@email.com</a>
     </div>
   </div>
   <div class="footer-bottom">
     <div class="footer-links">
-      <!-- REPLACE with your real links -->
       <a href="mailto:your@email.com">Email</a>
       <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener">LinkedIn</a>
       <a href="https://itch.io" target="_blank" rel="noopener">itch.io</a>
@@ -930,6 +933,11 @@
     <p class="footer-copy">© 2025 Aleksandra Matlak</p>
   </div>
 </footer>
+
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" aria-label="Close">✕</button>
+  <img src="" alt="">
+</div>
 
 <script>
   document.documentElement.classList.add('js');
@@ -947,8 +955,29 @@
       if (e.isIntersecting) { e.target.classList.add('on'); obs.unobserve(e.target); }
     });
   }, { threshold: 0.08 });
-
   document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  // Lightbox
+  const lightbox = document.getElementById('lightbox');
+  const lbImg = lightbox.querySelector('img');
+
+  document.querySelectorAll('[data-lightbox]').forEach(img => {
+    img.addEventListener('click', () => {
+      lbImg.src = img.src;
+      lbImg.alt = img.alt;
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  function closeLightbox() {
+    lightbox.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  lightbox.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
 </script>
 
 </body>
