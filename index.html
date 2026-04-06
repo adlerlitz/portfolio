@@ -306,9 +306,36 @@
       border-radius: 3px;
       background: transparent;
       overflow: hidden;
+      position: relative;
+      cursor: pointer;
     }
 
     .chart-frame + .chart-frame { margin-top: 1rem; }
+
+    .chart-img-wrap {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .chart-img-wrap::after {
+      content: 'Click to expand';
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(19, 28, 27, 0.55);
+      color: var(--cream);
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+      pointer-events: none;
+    }
+
+    .chart-frame:hover .chart-img-wrap::after { opacity: 1; }
 
     .chart-label {
       font-size: 0.68rem;
@@ -328,11 +355,10 @@
       object-fit: contain;
       object-position: top;
       display: block;
-      cursor: pointer;
-      transition: opacity 0.2s;
+      transition: transform 0.3s ease;
     }
 
-    .chart-frame img:hover { opacity: 0.85; }
+    .chart-frame:hover img { transform: scale(1.03); }
 
     .pullquote {
       font-family: 'Cormorant Garamond', serif;
@@ -790,13 +816,17 @@
         </div>
       </div>
       <div class="reveal d1">
-        <div class="chart-frame">
+        <div class="chart-frame" data-lightbox-trigger>
           <div class="chart-label">Dialogue Map</div>
-          <img src="https://raw.githubusercontent.com/adlerlitz/portfolio/refs/heads/main/mournstead_light.png" alt="Sapsorrow dialogue map" data-lightbox>
+          <div class="chart-img-wrap">
+            <img src="https://raw.githubusercontent.com/adlerlitz/portfolio/refs/heads/main/mournstead_light.png" alt="Sapsorrow dialogue map">
+          </div>
         </div>
-        <div class="chart-frame">
+        <div class="chart-frame" data-lightbox-trigger>
           <div class="chart-label">Consequence Flowchart</div>
-          <img src="https://raw.githubusercontent.com/adlerlitz/portfolio/refs/heads/main/mournstead_consequences_light.png" alt="Sapsorrow consequence flowchart" data-lightbox>
+          <div class="chart-img-wrap">
+            <img src="https://raw.githubusercontent.com/adlerlitz/portfolio/refs/heads/main/mournstead_consequences_light.png" alt="Sapsorrow consequence flowchart">
+          </div>
         </div>
       </div>
     </div>
@@ -827,7 +857,7 @@
           <span class="tag tag-light">UE5 / Unity</span>
           <span class="tag tag-light">Localisation</span>
         </div>
-        <a href="mailto:your@email.com" class="btn btn-cream">Send me an email</a>
+        <a href="/cdn-cgi/l/email-protection#522b3d272012373f333b3e7c313d3f" class="btn btn-cream">Send me an email</a>
       </div>
     </div>
   </section>
@@ -921,12 +951,12 @@
     </div>
     <div style="text-align:right;">
       <p style="font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--green-soft);margin-bottom:0.5rem;">Get in touch</p>
-      <a href="mailto:your@email.com" class="footer-email">your@email.com</a>
+      <a href="/cdn-cgi/l/email-protection#bfc6d0cacdffdad2ded6d391dcd0d2" class="footer-email"><span class="__cf_email__" data-cfemail="4e37213b3c0e2b232f2722602d2123">[email&#160;protected]</span></a>
     </div>
   </div>
   <div class="footer-bottom">
     <div class="footer-links">
-      <a href="mailto:your@email.com">Email</a>
+      <a href="/cdn-cgi/l/email-protection#126b7d676052777f737b7e3c717d7f">Email</a>
       <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener">LinkedIn</a>
       <a href="https://itch.io" target="_blank" rel="noopener">itch.io</a>
     </div>
@@ -939,7 +969,7 @@
   <img src="" alt="">
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   document.documentElement.classList.add('js');
 
   const nav = document.getElementById('main-nav');
@@ -961,8 +991,9 @@
   const lightbox = document.getElementById('lightbox');
   const lbImg = lightbox.querySelector('img');
 
-  document.querySelectorAll('[data-lightbox]').forEach(img => {
-    img.addEventListener('click', () => {
+  document.querySelectorAll('[data-lightbox-trigger]').forEach(frame => {
+    const img = frame.querySelector('img');
+    frame.addEventListener('click', () => {
       lbImg.src = img.src;
       lbImg.alt = img.alt;
       lightbox.classList.add('active');
@@ -972,13 +1003,4 @@
 
   function closeLightbox() {
     lightbox.classList.remove('active');
-    document.body.style.overflow = '';
-  }
-
-  lightbox.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
-  lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
-</script>
-
-</body>
-</html>
+    document.body.style.overflow
