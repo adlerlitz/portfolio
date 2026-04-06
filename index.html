@@ -35,8 +35,7 @@
       line-height: 1.75;
       overflow-x: hidden;
     }
-    
-    /* ACCESSIBILITY */
+
     a:focus-visible, button:focus-visible {
       outline: 2px dashed var(--green-pale);
       outline-offset: 4px;
@@ -282,19 +281,11 @@
       overflow: hidden;
     }
 
-    .video-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
-
-    .video-placeholder {
+    .video-wrap iframe {
       position: absolute;
-      inset: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 0.75rem;
-      color: var(--green-pale);
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: none;
     }
 
     .tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.5rem; }
@@ -324,20 +315,31 @@
     .chart-frame {
       border: 1px solid var(--rule);
       border-radius: 3px;
-      min-height: 400px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 0.75rem;
-      color: var(--ink-soft);
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      background: var(--cream-warm);
+      background: #ffffff;
       overflow: hidden;
     }
 
-    .chart-frame img { width: 100%; height: 100%; object-fit: contain; }
+    .chart-frame + .chart-frame { margin-top: 1rem; }
+
+    .chart-label {
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      padding: 0.6rem 1rem;
+      border-bottom: 1px solid var(--rule);
+      background: var(--cream-light);
+    }
+
+    .chart-frame img {
+      width: 100%;
+      height: auto;
+      max-height: 420px;
+      object-fit: contain;
+      object-position: top;
+      display: block;
+    }
 
     .pullquote {
       font-family: 'Cormorant Garamond', serif;
@@ -465,7 +467,7 @@
       position: absolute;
       bottom: 0; left: 0; right: 0;
       height: 65%;
-      background: linear-gradient(to top, rgba(36,61,38,0.9), transparent);
+      background: linear-gradient(to top, rgba(34,72,68,0.9), transparent);
     }
 
     .credit-floating-title {
@@ -668,6 +670,7 @@
 </nav>
 
 <main>
+
   <!-- HERO -->
   <section id="top" class="hero">
     <div class="hero-bg-text" aria-hidden="true">AM</div>
@@ -727,14 +730,7 @@
     <div class="honeycomb-grid">
       <div class="reveal">
         <div class="video-wrap">
-          <!-- REPLACE with: <iframe src="https://www.youtube.com/embed/YOUR_ID" allowfullscreen></iframe> -->
-          <div class="video-placeholder">
-            <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-              <circle cx="24" cy="24" r="23" stroke="#5A8860" stroke-width="1"/>
-              <polygon points="20,16 34,24 20,32" fill="#5A8860"/>
-            </svg>
-            <span style="font-size:0.95rem;"><iframe width="560" height="315" src="https://www.youtube.com/embed/gVWH-5UhZf0?si=jiRxiUAa9qmSvR5c" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></span>
-          </div>
+          <iframe src="https://www.youtube.com/embed/gVWH-5UhZf0?si=jiRxiUAa9qmSvR5c" title="Honeycomb: The World Beyond trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </div>
       </div>
       <div class="reveal d1">
@@ -777,19 +773,12 @@
       </div>
       <div class="reveal d1">
         <div class="chart-frame">
-          <!-- REPLACE with: <img src="sapsorrow-flowchart.png" alt="Sapsorrow dialogue flowchart"> -->
-          <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-            <rect x="1" y="1" width="38" height="38" rx="2" stroke="#B8CCB4"/>
-            <rect x="8" y="8" width="9" height="6" rx="1" fill="#B8CCB4"/>
-            <rect x="22" y="8" width="9" height="6" rx="1" fill="#B8CCB4"/>
-            <rect x="15" y="20" width="9" height="6" rx="1" fill="#B8CCB4"/>
-            <rect x="8" y="30" width="9" height="6" rx="1" fill="#B8CCB4"/>
-            <line x1="12.5" y1="14" x2="19.5" y2="20" stroke="#B8CCB4"/>
-            <line x1="26.5" y1="14" x2="20" y2="20" stroke="#B8CCB4"/>
-            <line x1="19.5" y1="26" x2="13" y2="30" stroke="#B8CCB4"/>
-          </svg>
-          <span style="font-size:0.95rem;"><img src="https://raw.githubusercontent.com/adlerlitz/portfolio/refs/heads/main/mournstead_light.png" alt="Sapsorrow dialogue flowchart">
- </span>
+          <div class="chart-label">Dialogue Map</div>
+          <img src="https://raw.githubusercontent.com/adlerlitz/portfolio/refs/heads/main/mournstead_light.png" alt="Sapsorrow dialogue map">
+        </div>
+        <div class="chart-frame">
+          <div class="chart-label">Consequence Flowchart</div>
+          <img src="https://raw.githubusercontent.com/adlerlitz/portfolio/refs/heads/main/mournstead_consequences_light.png" alt="Sapsorrow consequence flowchart">
         </div>
       </div>
     </div>
@@ -804,7 +793,7 @@
     </div>
     <div class="about-grid">
       <div class="photo-wrap reveal">
-        <!-- REPLACE with: <img src="aleksandra.jpg" alt="Aleksandra Matlak" class="photo-frame"> -->
+        <!-- REPLACE with your photo: <img src="YOUR_PHOTO_URL" alt="Aleksandra Matlak" class="photo-frame"> -->
         <div class="photo-placeholder">
           <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
             <circle cx="22" cy="15" r="9" fill="#C8DEC4" opacity="0.4"/>
@@ -822,8 +811,8 @@
           <span class="tag tag-light">UE5 / Unity</span>
           <span class="tag tag-light">Localisation</span>
         </div>
-        <!-- Zmień adres e-mail poniżej -->
-        <a href="mailto:twoj@email.com" class="btn btn-cream">Send me an email</a>
+        <!-- REPLACE with your email -->
+        <a href="mailto:your@email.com" class="btn btn-cream">Send me an email</a>
       </div>
     </div>
   </section>
@@ -840,6 +829,7 @@
         <div class="woods-text reveal">
           <p>A short choose-your-own-adventure built in Twine. Character-driven and atmospheric, structured around a single irreversible choice. Play time is under ten minutes.</p>
           <p style="margin-bottom:2rem;">It's a quieter piece — written to explore how much weight a small moment can carry when the player holds the pen.</p>
+          <!-- REPLACE with your itch.io link -->
           <a href="https://itch.io" target="_blank" rel="noopener" class="btn btn-outline">Play on itch.io →</a>
         </div>
         <div class="twine-frame reveal d1">
@@ -863,7 +853,7 @@
     <div class="credits-grid">
       <div class="credit-card reveal">
         <div class="credit-img-wrap">
-          <!-- REPLACE with: <img src="hairdresser.jpg" alt="Hairdresser Simulator"> -->
+          <!-- REPLACE with: <img src="YOUR_SCREENSHOT_URL" alt="Hairdresser Simulator"> -->
           <div class="credit-img-placeholder">Screenshot</div>
           <div class="credit-floating-title">
             <span>Released</span>
@@ -876,7 +866,7 @@
       </div>
       <div class="credit-card reveal d1">
         <div class="credit-img-wrap">
-          <!-- REPLACE with: <img src="houseflipper.jpg" alt="House Flipper Remastered"> -->
+          <!-- REPLACE with: <img src="YOUR_SCREENSHOT_URL" alt="House Flipper Remastered"> -->
           <div class="credit-img-placeholder">Screenshot</div>
           <div class="credit-floating-title">
             <span>Released</span>
@@ -905,13 +895,16 @@
           Your writing excerpt goes here — two to four sentences with atmosphere and character. Something that shows your voice.
         </blockquote>
         <p style="color:var(--ink-soft);font-size:0.9rem;margin-bottom:2rem;">The full sample covers approximately [X] pages. Available via the link below or on request.</p>
+        <!-- REPLACE with your PDF or hosted doc link -->
         <a href="#" class="btn btn-dark">Read full sample →</a>
       </div>
       <div class="reveal d1">
+        <!-- REPLACE with an actual image, or remove this column -->
         <div class="writing-side-img"><span style="font-size:0.9rem;font-style:italic;">Image</span></div>
       </div>
     </div>
   </section>
+
 </main>
 
 <!-- FOOTER / CONTACT -->
@@ -923,13 +916,14 @@
     </div>
     <div style="text-align:right;">
       <p style="font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--green-soft);margin-bottom:0.5rem;">Get in touch</p>
-      <!-- Zmień adres e-mail poniżej -->
-      <a href="mailto:twoj@email.com" class="footer-email">twoj@email.com</a>
+      <!-- REPLACE with your email -->
+      <a href="mailto:your@email.com" class="footer-email">your@email.com</a>
     </div>
   </div>
   <div class="footer-bottom">
     <div class="footer-links">
-      <a href="mailto:twoj@email.com">Email</a>
+      <!-- REPLACE with your real links -->
+      <a href="mailto:your@email.com">Email</a>
       <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener">LinkedIn</a>
       <a href="https://itch.io" target="_blank" rel="noopener">itch.io</a>
     </div>
@@ -938,9 +932,8 @@
 </footer>
 
 <script>
-  document.documentElement.classList.add("js");
-  
-  // NAV SCROLL BEHAVIOR
+  document.documentElement.classList.add('js');
+
   const nav = document.getElementById('main-nav');
   let last = 0;
   window.addEventListener('scroll', () => {
@@ -949,26 +942,14 @@
     last = y;
   }, { passive: true });
 
-  // REVEAL ANIMATION ON SCROLL
-  const observerOptions = {
-    root: null,
-    rootMargin: '0px',
-    threshold: 0.15
-  };
-
-  const observer = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('on');
-        // Stop observing once revealed
-        observer.unobserve(entry.target);
-      }
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('on'); obs.unobserve(e.target); }
     });
-  }, observerOptions);
+  }, { threshold: 0.08 });
 
-  document.querySelectorAll('.reveal').forEach(el => {
-    observer.observe(el);
-  });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 </script>
+
 </body>
 </html>
