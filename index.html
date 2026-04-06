@@ -35,6 +35,12 @@
       line-height: 1.75;
       overflow-x: hidden;
     }
+    
+    /* ACCESSIBILITY */
+    a:focus-visible, button:focus-visible {
+      outline: 2px dashed var(--green-pale);
+      outline-offset: 4px;
+    }
 
     /* NAV */
     nav {
@@ -661,252 +667,251 @@
   </ul>
 </nav>
 
-<!-- HERO -->
-<section id="top" class="hero">
-  <div class="hero-bg-text" aria-hidden="true">AM</div>
-  <div class="hero-inner">
-    <p class="hero-label">Narrative Design &amp; Story Systems</p>
-    <h1 class="hero-name">
-      Aleksandra<br>
-      <span class="indent">Matlak</span>
-    </h1>
-    <div class="hero-divider">
-      <div class="hero-divider-line"></div>
-      <p class="hero-subtitle">Narration &amp; Design</p>
+<main>
+  <!-- HERO -->
+  <section id="top" class="hero">
+    <div class="hero-bg-text" aria-hidden="true">AM</div>
+    <div class="hero-inner">
+      <p class="hero-label">Narrative Design &amp; Story Systems</p>
+      <h1 class="hero-name">
+        Aleksandra<br>
+        <span class="indent">Matlak</span>
+      </h1>
+      <div class="hero-divider">
+        <div class="hero-divider-line"></div>
+        <p class="hero-subtitle">Narration &amp; Design</p>
+      </div>
+      <p class="hero-copy">
+        I write to create moments of fun for the player. Video games are where I feel most at home — crafting characters worth travelling with, weaving stories that enhance gameplay, and designing systems that serve the narrative. I'd love to help you build experiences that stay with players long after they've put down the controller.
+      </p>
+      <div class="hero-ctas">
+        <a href="#honeycomb" class="btn btn-cream">View my work</a>
+        <a href="#contact" class="btn btn-outline">Get in touch</a>
+      </div>
     </div>
-    <p class="hero-copy">
-      I write to create moments of fun for the player. Video games are where I feel most at home — crafting characters worth travelling with, weaving stories that enhance gameplay, and designing systems that serve the narrative. I'd love to help you build experiences that stay with players long after they've put down the controller.
-    </p>
-    <div class="hero-ctas">
-      <a href="#honeycomb" class="btn btn-cream">View my work</a>
-      <a href="#contact" class="btn btn-outline">Get in touch</a>
+    <div class="hero-scroll">
+      <div class="hero-scroll-line"></div>
+      Scroll to explore
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-strip" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Narrative Design</span><span class="dot">·</span>
+      <span>Branching Systems</span><span class="dot">·</span>
+      <span>VO Direction</span><span class="dot">·</span>
+      <span>Localisation</span><span class="dot">·</span>
+      <span>UE5 &amp; Unity</span><span class="dot">·</span>
+      <span>Story Systems</span><span class="dot">·</span>
+      <span>Dialogue Design</span><span class="dot">·</span>
+      <span>Production</span><span class="dot">·</span>
+      <span>Narrative Design</span><span class="dot">·</span>
+      <span>Branching Systems</span><span class="dot">·</span>
+      <span>VO Direction</span><span class="dot">·</span>
+      <span>Localisation</span><span class="dot">·</span>
+      <span>UE5 &amp; Unity</span><span class="dot">·</span>
+      <span>Story Systems</span><span class="dot">·</span>
+      <span>Dialogue Design</span><span class="dot">·</span>
+      <span>Production</span><span class="dot">·</span>
     </div>
   </div>
-  <div class="hero-scroll">
-    <div class="hero-scroll-line"></div>
-    Scroll to explore
-  </div>
-</section>
 
-<!-- MARQUEE -->
-<div class="marquee-strip" aria-hidden="true">
-  <div class="marquee-track">
-    <span>Narrative Design</span><span class="dot">·</span>
-    <span>Branching Systems</span><span class="dot">·</span>
-    <span>VO Direction</span><span class="dot">·</span>
-    <span>Localisation</span><span class="dot">·</span>
-    <span>UE5 &amp; Unity</span><span class="dot">·</span>
-    <span>Story Systems</span><span class="dot">·</span>
-    <span>Dialogue Design</span><span class="dot">·</span>
-    <span>Production</span><span class="dot">·</span>
-    <span>Narrative Design</span><span class="dot">·</span>
-    <span>Branching Systems</span><span class="dot">·</span>
-    <span>VO Direction</span><span class="dot">·</span>
-    <span>Localisation</span><span class="dot">·</span>
-    <span>UE5 &amp; Unity</span><span class="dot">·</span>
-    <span>Story Systems</span><span class="dot">·</span>
-    <span>Dialogue Design</span><span class="dot">·</span>
-    <span>Production</span><span class="dot">·</span>
-  </div>
-</div>
+  <!-- 01 HONEYCOMB -->
+  <section id="honeycomb" class="section section-light">
+    <div class="section-header reveal">
+      <p class="section-num">01 — Featured Project</p>
+      <h2 class="section-title">Honeycomb:<br><em>The World Beyond</em></h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="honeycomb-grid">
+      <div class="reveal">
+        <div class="video-wrap">
+          <!-- REPLACE with: <iframe src="https://www.youtube.com/embed/YOUR_ID" allowfullscreen></iframe> -->
+          <div class="video-placeholder">
+            <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+              <circle cx="24" cy="24" r="23" stroke="#5A8860" stroke-width="1"/>
+              <polygon points="20,16 34,24 20,32" fill="#5A8860"/>
+            </svg>
+            <span style="font-size:0.95rem;">Paste YouTube embed here</span>
+          </div>
+        </div>
+      </div>
+      <div class="reveal d1">
+        <div class="tags">
+          <span class="tag tag-green">Open World</span>
+          <span class="tag tag-green">Sci-Fi Survival</span>
+          <span class="tag">UE5</span>
+          <span class="tag">Dialogue</span>
+          <span class="tag">Localisation</span>
+        </div>
+        <p style="color:var(--ink-mid);margin-bottom:1rem;">Honeycomb: The World Beyond is an open-world sci-fi survival game developed at Frozen Way. As the narrative designer, I owned the full dialogue pipeline — character voice documents, branching conversation design, UI strings, notification copy, and localisation workflows.</p>
+        <p style="color:var(--ink-mid);margin-bottom:1.5rem;">Beyond writing, I contributed to publisher-facing documentation, collaborated with producers on pitch materials, and directed voice actors across multiple recording sessions. Honeycomb recently reached release candidate stage.</p>
+        <div class="tags">
+          <span class="tag">Dialogue Design</span>
+          <span class="tag">VO Direction</span>
+          <span class="tag">Pitch Docs</span>
+          <span class="tag">Loc Pipeline</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<!-- 01 HONEYCOMB -->
-<section id="honeycomb" class="section section-light">
-  <div class="section-header reveal">
-    <p class="section-num">01 — Featured Project</p>
-    <h2 class="section-title">Honeycomb:<br><em>The World Beyond</em></h2>
-    <div class="section-rule"></div>
-  </div>
-  <div class="honeycomb-grid">
-    <div class="reveal">
-      <div class="video-wrap">
-        <!-- REPLACE with: <iframe src="https://www.youtube.com/embed/YOUR_ID" allowfullscreen></iframe> -->
-        <div class="video-placeholder">
-          <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-            <circle cx="24" cy="24" r="23" stroke="#5A8860" stroke-width="1"/>
-            <polygon points="20,16 34,24 20,32" fill="#5A8860"/>
+  <!-- 02 SAPSORROW -->
+  <section id="sapsorrow" class="section section-cream">
+    <div class="section-header reveal">
+      <p class="section-num">02 — Systems Showcase</p>
+      <h2 class="section-title">Sapsorrow</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="sapsorrow-grid">
+      <div class="reveal">
+        <p style="color:var(--ink-mid);margin-bottom:1.1rem;">Sapsorrow is a branching narrative project built to explore dialogue architecture at scale — tracing player agency through consequential choices, locked information paths, and emotional state tracking.</p>
+        <blockquote class="pullquote">Where most branching systems converge after three nodes, Sapsorrow branches stay distinct through to resolution.</blockquote>
+        <p style="color:var(--ink-mid);margin-bottom:1.5rem;">The design prioritises meaningful divergence over the illusion of choice: each branch genuinely alters what players learn and who they can trust.</p>
+        <div class="tags">
+          <span class="tag tag-green">Branching Architecture</span>
+          <span class="tag tag-green">Player Agency</span>
+          <span class="tag">Narrative Design</span>
+        </div>
+      </div>
+      <div class="reveal d1">
+        <div class="chart-frame">
+          <!-- REPLACE with: <img src="sapsorrow-flowchart.png" alt="Sapsorrow dialogue flowchart"> -->
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+            <rect x="1" y="1" width="38" height="38" rx="2" stroke="#B8CCB4"/>
+            <rect x="8" y="8" width="9" height="6" rx="1" fill="#B8CCB4"/>
+            <rect x="22" y="8" width="9" height="6" rx="1" fill="#B8CCB4"/>
+            <rect x="15" y="20" width="9" height="6" rx="1" fill="#B8CCB4"/>
+            <rect x="8" y="30" width="9" height="6" rx="1" fill="#B8CCB4"/>
+            <line x1="12.5" y1="14" x2="19.5" y2="20" stroke="#B8CCB4"/>
+            <line x1="26.5" y1="14" x2="20" y2="20" stroke="#B8CCB4"/>
+            <line x1="19.5" y1="26" x2="13" y2="30" stroke="#B8CCB4"/>
           </svg>
-          <span style="font-size:0.95rem;">Paste YouTube embed here</span>
+          <span style="font-size:0.95rem;">Your flowchart image goes here</span>
         </div>
       </div>
     </div>
-    <div class="reveal d1">
-      <div class="tags">
-        <span class="tag tag-green">Open World</span>
-        <span class="tag tag-green">Sci-Fi Survival</span>
-        <span class="tag">UE5</span>
-        <span class="tag">Dialogue</span>
-        <span class="tag">Localisation</span>
-      </div>
-      <p style="color:var(--ink-mid);margin-bottom:1rem;">Honeycomb: The World Beyond is an open-world sci-fi survival game developed at Frozen Way. As the narrative designer, I owned the full dialogue pipeline — character voice documents, branching conversation design, UI strings, notification copy, and localisation workflows.</p>
-      <p style="color:var(--ink-mid);margin-bottom:1.5rem;">Beyond writing, I contributed to publisher-facing documentation, collaborated with producers on pitch materials, and directed voice actors across multiple recording sessions. Honeycomb recently reached release candidate stage.</p>
-      <div class="tags">
-        <span class="tag">Dialogue Design</span>
-        <span class="tag">VO Direction</span>
-        <span class="tag">Pitch Docs</span>
-        <span class="tag">Loc Pipeline</span>
-      </div>
-    </div>
-  </div>
-</section>
+  </section>
 
-<!-- 02 SAPSORROW -->
-<section id="sapsorrow" class="section section-cream">
-  <div class="section-header reveal">
-    <p class="section-num">02 — Systems Showcase</p>
-    <h2 class="section-title">Sapsorrow</h2>
-    <div class="section-rule"></div>
-  </div>
-  <div class="sapsorrow-grid">
-    <div class="reveal">
-      <p style="color:var(--ink-mid);margin-bottom:1.1rem;">Sapsorrow is a branching narrative project built to explore dialogue architecture at scale — tracing player agency through consequential choices, locked information paths, and emotional state tracking.</p>
-      <blockquote class="pullquote">Where most branching systems converge after three nodes, Sapsorrow branches stay distinct through to resolution.</blockquote>
-      <p style="color:var(--ink-mid);margin-bottom:1.5rem;">The design prioritises meaningful divergence over the illusion of choice: each branch genuinely alters what players learn and who they can trust.</p>
-      <div class="tags">
-        <span class="tag tag-green">Branching Architecture</span>
-        <span class="tag tag-green">Player Agency</span>
-        <span class="tag">Narrative Design</span>
+  <!-- 03 ABOUT -->
+  <section id="about" class="section section-green">
+    <div class="section-header reveal">
+      <p class="section-num section-num-light">03 — About Me</p>
+      <h2 class="section-title section-title-light">Narrative design<br><em>and</em> production thinking</h2>
+      <div class="section-rule section-rule-light"></div>
+    </div>
+    <div class="about-grid">
+      <div class="photo-wrap reveal">
+        <!-- REPLACE with: <img src="aleksandra.jpg" alt="Aleksandra Matlak" class="photo-frame"> -->
+        <div class="photo-placeholder">
+          <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
+            <circle cx="22" cy="15" r="9" fill="#C8DEC4" opacity="0.4"/>
+            <path d="M4 40c0-9.941 8.059-18 18-18s18 8.059 18 18" fill="#C8DEC4" opacity="0.4"/>
+          </svg>
+        </div>
+      </div>
+      <div class="about-text reveal d1">
+        <p>I'm Aleksandra, a narrative designer and writer with 3.5 years of commercial experience in games. I specialise in dialogue, branching systems, and gameplay-integrated storytelling, with hands-on experience in Unity and UE5, and a Master's in Project Management in progress.</p>
+        <p>I've collaborated with producers on pitch decks, taken part in publisher meetings, built localisation workflows, and directed voice actors across multiple projects. If you're looking for someone who can bridge creative and production — I'm your person.</p>
+        <div class="tags" style="margin-top:1.5rem;margin-bottom:1.75rem;">
+          <span class="tag tag-light">Dialogue Systems</span>
+          <span class="tag tag-light">VO Direction</span>
+          <span class="tag tag-light">Production</span>
+          <span class="tag tag-light">UE5 / Unity</span>
+          <span class="tag tag-light">Localisation</span>
+        </div>
+        <!-- Zmień adres e-mail poniżej -->
+        <a href="mailto:twoj@email.com" class="btn btn-cream">Send me an email</a>
       </div>
     </div>
-    <div class="reveal d1">
-      <div class="chart-frame">
-        <!-- REPLACE with: <img src="sapsorrow-flowchart.png" alt="Sapsorrow dialogue flowchart"> -->
-        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-          <rect x="1" y="1" width="38" height="38" rx="2" stroke="#B8CCB4"/>
-          <rect x="8" y="8" width="9" height="6" rx="1" fill="#B8CCB4"/>
-          <rect x="22" y="8" width="9" height="6" rx="1" fill="#B8CCB4"/>
-          <rect x="15" y="20" width="9" height="6" rx="1" fill="#B8CCB4"/>
-          <rect x="8" y="30" width="9" height="6" rx="1" fill="#B8CCB4"/>
-          <line x1="12.5" y1="14" x2="19.5" y2="20" stroke="#B8CCB4"/>
-          <line x1="26.5" y1="14" x2="20" y2="20" stroke="#B8CCB4"/>
-          <line x1="19.5" y1="26" x2="13" y2="30" stroke="#B8CCB4"/>
-        </svg>
-        <span style="font-size:0.95rem;">Your flowchart image goes here</span>
-      </div>
-    </div>
-  </div>
-</section>
+  </section>
 
-<!-- 03 ABOUT -->
-<section id="about" class="section section-green">
-  <div class="section-header reveal">
-    <p class="section-num section-num-light">03 — About Me</p>
-    <h2 class="section-title section-title-light">Narrative design<br><em>and</em> production thinking</h2>
-    <div class="section-rule section-rule-light"></div>
-  </div>
-  <div class="about-grid">
-    <div class="photo-wrap reveal">
-      <!-- REPLACE with: <img src="aleksandra.jpg" alt="Aleksandra Matlak" class="photo-frame"> -->
-      <div class="photo-placeholder">
-        <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
-          <circle cx="22" cy="15" r="9" fill="#C8DEC4" opacity="0.4"/>
-          <path d="M4 40c0-9.941 8.059-18 18-18s18 8.059 18 18" fill="#C8DEC4" opacity="0.4"/>
-        </svg>
-      </div>
+  <!-- 04 THROUGH THE WOODS -->
+  <section id="woods" class="section section-cream">
+    <div class="section-header reveal">
+      <p class="section-num">04 — Interactive Work</p>
+      <h2 class="section-title">Through the <em>Woods</em></h2>
+      <div class="section-rule"></div>
     </div>
-    <div class="about-text reveal d1">
-      <p>I'm Aleksandra, a narrative designer and writer with 3.5 years of commercial experience in games. I specialise in dialogue, branching systems, and gameplay-integrated storytelling, with hands-on experience in Unity and UE5, and a Master's in Project Management in progress.</p>
-      <p>I've collaborated with producers on pitch decks, taken part in publisher meetings, built localisation workflows, and directed voice actors across multiple projects. If you're looking for someone who can bridge creative and production — I'm your person.</p>
-      <div class="tags" style="margin-top:1.5rem;margin-bottom:1.75rem;">
-        <span class="tag tag-light">Dialogue Systems</span>
-        <span class="tag tag-light">VO Direction</span>
-        <span class="tag tag-light">Production</span>
-        <span class="tag tag-light">UE5 / Unity</span>
-        <span class="tag tag-light">Localisation</span>
-      </div>
-      <!-- UPDATE EMAIL -->
-      <a href="/cdn-cgi/l/email-protection#a0d9cfd5d2e0c5cdc1c9cc8ec3cfcd" class="btn btn-cream">Send me an email</a>
-    </div>
-  </div>
-</section>
-
-<!-- 04 THROUGH THE WOODS -->
-<section id="woods" class="section section-cream">
-  <div class="section-header reveal">
-    <p class="section-num">04 — Interactive Work</p>
-    <h2 class="section-title">Through the <em>Woods</em></h2>
-    <div class="section-rule"></div>
-  </div>
-  <div style="background:var(--green-deep);border-radius:4px;padding:clamp(2.5rem,5vw,4rem);">
-    <div class="woods-inner">
-      <div class="woods-text reveal">
-        <p>A short choose-your-own-adventure built in Twine. Character-driven and atmospheric, structured around a single irreversible choice. Play time is under ten minutes.</p>
-        <p style="margin-bottom:2rem;">It's a quieter piece — written to explore how much weight a small moment can carry when the player holds the pen.</p>
-        <!-- UPDATE LINK -->
-        <a href="https://itch.io" target="_blank" rel="noopener" class="btn btn-outline">Play on itch.io →</a>
-      </div>
-      <div class="twine-frame reveal d1">
-        <p class="twine-passage">The path branches here. To your left, the older trees — roots surfacing like knuckles, shadows pooling between them. To your right, a gap in the canopy, grey light falling through.</p>
-        <div class="twine-choices">
-          <div class="twine-choice">→ Take the older path.</div>
-          <div class="twine-choice">→ Move towards the light.</div>
+    <div style="background:var(--green-deep);border-radius:4px;padding:clamp(2.5rem,5vw,4rem);">
+      <div class="woods-inner">
+        <div class="woods-text reveal">
+          <p>A short choose-your-own-adventure built in Twine. Character-driven and atmospheric, structured around a single irreversible choice. Play time is under ten minutes.</p>
+          <p style="margin-bottom:2rem;">It's a quieter piece — written to explore how much weight a small moment can carry when the player holds the pen.</p>
+          <a href="https://itch.io" target="_blank" rel="noopener" class="btn btn-outline">Play on itch.io →</a>
+        </div>
+        <div class="twine-frame reveal d1">
+          <p class="twine-passage">The path branches here. To your left, the older trees — roots surfacing like knuckles, shadows pooling between them. To your right, a gap in the canopy, grey light falling through.</p>
+          <div class="twine-choices">
+            <div class="twine-choice">→ Take the older path.</div>
+            <div class="twine-choice">→ Move towards the light.</div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- 05 CREDITS -->
-<section id="credits" class="section section-light">
-  <div class="section-header reveal">
-    <p class="section-num">05 — Shipped Titles</p>
-    <h2 class="section-title">Released <em>Work</em></h2>
-    <div class="section-rule"></div>
-  </div>
-  <div class="credits-grid">
-    <div class="credit-card reveal">
-      <div class="credit-img-wrap">
-        <!-- REPLACE with: <img src="hairdresser.jpg" alt="Hairdresser Simulator"> -->
-        <div class="credit-img-placeholder">Screenshot</div>
-        <div class="credit-floating-title">
-          <span>Released</span>
-          <h3>Hairdresser Simulator</h3>
+  <!-- 05 CREDITS -->
+  <section id="credits" class="section section-light">
+    <div class="section-header reveal">
+      <p class="section-num">05 — Shipped Titles</p>
+      <h2 class="section-title">Released <em>Work</em></h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="credits-grid">
+      <div class="credit-card reveal">
+        <div class="credit-img-wrap">
+          <!-- REPLACE with: <img src="hairdresser.jpg" alt="Hairdresser Simulator"> -->
+          <div class="credit-img-placeholder">Screenshot</div>
+          <div class="credit-floating-title">
+            <span>Released</span>
+            <h3>Hairdresser Simulator</h3>
+          </div>
+        </div>
+        <div class="credit-body">
+          <p>Narrative design and writing across the full production cycle. Character dialogue, UI copy, and maintaining consistent tone across a lighthearted, personality-driven simulation title.</p>
         </div>
       </div>
-      <div class="credit-body">
-        <p>Narrative design and writing across the full production cycle. Character dialogue, UI copy, and maintaining consistent tone across a lighthearted, personality-driven simulation title.</p>
-      </div>
-    </div>
-    <div class="credit-card reveal d1">
-      <div class="credit-img-wrap">
-        <!-- REPLACE with: <img src="houseflipper.jpg" alt="House Flipper Remastered"> -->
-        <div class="credit-img-placeholder">Screenshot</div>
-        <div class="credit-floating-title">
-          <span>Released</span>
-          <h3>House Flipper: Remastered Collection</h3>
+      <div class="credit-card reveal d1">
+        <div class="credit-img-wrap">
+          <!-- REPLACE with: <img src="houseflipper.jpg" alt="House Flipper Remastered"> -->
+          <div class="credit-img-placeholder">Screenshot</div>
+          <div class="credit-floating-title">
+            <span>Released</span>
+            <h3>House Flipper: Remastered Collection</h3>
+          </div>
+        </div>
+        <div class="credit-body">
+          <p>Writing and localisation on the remastered edition. UI string revision, consistency passes across languages, and documentation supporting the localisation pipeline.</p>
         </div>
       </div>
-      <div class="credit-body">
-        <p>Writing and localisation on the remastered edition. UI string revision, consistency passes across languages, and documentation supporting the localisation pipeline.</p>
+    </div>
+  </section>
+
+  <!-- 06 WRITING -->
+  <section id="writing" class="section section-cream">
+    <div class="section-header reveal">
+      <p class="section-num">06 — Personal Writing</p>
+      <h2 class="section-title">Writing <em>Sample</em></h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="writing-grid">
+      <div class="reveal">
+        <p style="color:var(--ink-mid);">Fiction has always run alongside my games work — offered here as a sample of voice, prose rhythm, and how I handle character interiority and atmosphere outside the constraints of interactive format.</p>
+        <blockquote class="writing-excerpt">
+          <!-- REPLACE WITH 2–4 SENTENCES FROM YOUR WRITING -->
+          Your writing excerpt goes here — two to four sentences with atmosphere and character. Something that shows your voice.
+        </blockquote>
+        <p style="color:var(--ink-soft);font-size:0.9rem;margin-bottom:2rem;">The full sample covers approximately [X] pages. Available via the link below or on request.</p>
+        <a href="#" class="btn btn-dark">Read full sample →</a>
+      </div>
+      <div class="reveal d1">
+        <div class="writing-side-img"><span style="font-size:0.9rem;font-style:italic;">Image</span></div>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- 06 WRITING -->
-<section id="writing" class="section section-cream">
-  <div class="section-header reveal">
-    <p class="section-num">06 — Personal Writing</p>
-    <h2 class="section-title">Writing <em>Sample</em></h2>
-    <div class="section-rule"></div>
-  </div>
-  <div class="writing-grid">
-    <div class="reveal">
-      <p style="color:var(--ink-mid);">Fiction has always run alongside my games work — offered here as a sample of voice, prose rhythm, and how I handle character interiority and atmosphere outside the constraints of interactive format.</p>
-      <blockquote class="writing-excerpt">
-        <!-- REPLACE WITH 2–4 SENTENCES FROM YOUR WRITING -->
-        Your writing excerpt goes here — two to four sentences with atmosphere and character. Something that shows your voice.
-      </blockquote>
-      <p style="color:var(--ink-soft);font-size:0.9rem;margin-bottom:2rem;">The full sample covers approximately [X] pages. Available via the link below or on request.</p>
-      <!-- UPDATE LINK -->
-      <a href="#" class="btn btn-dark">Read full sample →</a>
-    </div>
-    <div class="reveal d1">
-      <!-- Replace with an actual image or remove this column -->
-      <div class="writing-side-img"><span style="font-size:0.9rem;font-style:italic;">Image</span></div>
-    </div>
-  </div>
-</section>
+  </section>
+</main>
 
 <!-- FOOTER / CONTACT -->
 <footer id="contact" class="footer">
@@ -917,14 +922,13 @@
     </div>
     <div style="text-align:right;">
       <p style="font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--green-soft);margin-bottom:0.5rem;">Get in touch</p>
-      <!-- UPDATE EMAIL -->
-      <a href="/cdn-cgi/l/email-protection#6910061c1b290c04080005470a0604" class="footer-email"><span class="__cf_email__" data-cfemail="6a13051f182a0f070b030644090507">[email&#160;protected]</span></a>
+      <!-- Zmień adres e-mail poniżej -->
+      <a href="mailto:twoj@email.com" class="footer-email">twoj@email.com</a>
     </div>
   </div>
   <div class="footer-bottom">
     <div class="footer-links">
-      <!-- UPDATE ALL LINKS -->
-      <a href="/cdn-cgi/l/email-protection#136a7c666153767e727a7f3d707c7e">Email</a>
+      <a href="mailto:twoj@email.com">Email</a>
       <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener">LinkedIn</a>
       <a href="https://itch.io" target="_blank" rel="noopener">itch.io</a>
     </div>
@@ -932,12 +936,38 @@
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
   document.documentElement.classList.add("js");
+  
+  // NAV SCROLL BEHAVIOR
   const nav = document.getElementById('main-nav');
   let last = 0;
   window.addEventListener('scroll', () => {
     const y = window.scrollY;
     nav.classList.toggle('hidden', y > last && y > 80);
     last = y;
-  }, { passive: tru
+  }, { passive: true });
+
+  // REVEAL ANIMATION ON SCROLL
+  const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.15
+  };
+
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('on');
+        // Stop observing once revealed
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('.reveal').forEach(el => {
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
