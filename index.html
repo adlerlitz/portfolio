@@ -377,14 +377,14 @@
       position: fixed;
       inset: 0;
       z-index: 999;
-      background: rgba(19, 28, 27, 0.92);
+      background: rgba(244, 237, 216, 0.97);
       display: flex;
       align-items: center;
       justify-content: center;
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.25s ease;
-      cursor: zoom-out;
+      overflow: auto;
     }
 
     .lightbox.active { opacity: 1; pointer-events: auto; }
@@ -394,21 +394,46 @@
       max-height: 90vh;
       object-fit: contain;
       border-radius: 3px;
-      box-shadow: 0 8px 40px rgba(0,0,0,0.4);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+      cursor: zoom-in;
+      transition: none;
+    }
+
+    .lightbox.zoomed {
+      align-items: flex-start;
+      justify-content: flex-start;
+      cursor: grab;
+    }
+
+    .lightbox.zoomed img {
+      max-width: none;
+      max-height: none;
+      width: auto;
+      height: auto;
+      cursor: zoom-out;
+      margin: 2rem auto;
+      display: block;
     }
 
     .lightbox-close {
-      position: absolute;
+      position: fixed;
       top: 1.25rem;
       right: 1.5rem;
-      background: none;
+      z-index: 1000;
+      background: var(--green-deep);
       border: none;
       color: var(--cream);
-      font-size: 1.5rem;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      font-size: 1.1rem;
       cursor: pointer;
-      opacity: 0.7;
+      opacity: 0.85;
       transition: opacity 0.2s;
       font-family: 'Outfit', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .lightbox-close:hover { opacity: 1; }
@@ -996,13 +1021,21 @@
     frame.addEventListener('click', () => {
       lbImg.src = img.src;
       lbImg.alt = img.alt;
+      lightbox.classList.remove('zoomed');
       lightbox.classList.add('active');
       document.body.style.overflow = 'hidden';
     });
   });
 
+  lbImg.addEventListener('click', (e) => {
+    e.stopPropagation();
+    lightbox.classList.toggle('zoomed');
+  });
+
   function closeLightbox() {
-    lightbox.classList.remove('active');
+    lightbox.classList.remove('active', 'zoomed');
+    lightbox.scrollTop = 0;
+    lightbox.scrollLeft = 0;
     document.body.style.overflow = '';
   }
 
