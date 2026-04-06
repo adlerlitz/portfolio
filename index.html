@@ -372,6 +372,134 @@
       margin: 2rem 0;
     }
 
+    /* ACCORDION */
+    .accordion { margin-top: 3rem; }
+
+    .accordion-item {
+      border-top: 1px solid var(--rule);
+    }
+
+    .accordion-item:last-child { border-bottom: 1px solid var(--rule); }
+
+    .accordion-trigger {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 0.25rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      transition: color 0.2s;
+    }
+
+    .accordion-trigger:hover { color: var(--green-mid); }
+
+    .accordion-icon {
+      width: 20px;
+      height: 20px;
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .accordion-icon::before,
+    .accordion-icon::after {
+      content: '';
+      position: absolute;
+      background: var(--ink-soft);
+      transition: transform 0.3s ease;
+    }
+
+    .accordion-icon::before {
+      width: 12px; height: 1px;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .accordion-icon::after {
+      width: 1px; height: 12px;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .accordion-item.open .accordion-icon::after {
+      transform: translate(-50%, -50%) rotate(90deg);
+    }
+
+    .accordion-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+    }
+
+    .accordion-body-inner {
+      padding: 0 0.25rem 1.5rem;
+    }
+
+    .accordion-body-inner p {
+      color: var(--ink-mid);
+      font-size: 0.95rem;
+      line-height: 1.8;
+      margin-bottom: 0.8rem;
+    }
+
+    .accordion-body-inner p:last-child { margin-bottom: 0; }
+
+    .accordion-body-inner strong {
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    /* QUEST LIST & STEPS */
+    .accordion-body-inner ol.quest-list {
+      padding-left: 1.25rem;
+      margin: 1rem 0;
+    }
+
+    .accordion-body-inner .quest-step {
+      padding-left: 1rem;
+      border-left: 2px solid var(--green-pale);
+      margin: 0.8rem 0 1.2rem;
+    }
+
+    .accordion-body-inner .quest-step::marker {
+      color: var(--green-mid);
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+
+    .accordion-body-inner .quest-step p {
+      margin-bottom: 0.5rem;
+    }
+
+    .accordion-body-inner ul {
+      list-style: none;
+      padding-left: 1.25rem;
+      margin: 0.4rem 0 0.8rem;
+    }
+
+    .accordion-body-inner ul li {
+      color: var(--ink-mid);
+      font-size: 0.95rem;
+      line-height: 1.8;
+      position: relative;
+      padding-left: 0.9rem;
+    }
+
+    .accordion-body-inner ul li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--green-soft);
+    }
+
     /* LIGHTBOX */
     .lightbox {
       position: fixed;
@@ -825,7 +953,7 @@
 
   <section id="sapsorrow" class="section section-cream">
     <div class="section-header reveal">
-      <p class="section-num">02 — Systems Showcase</p>
+      <p class="section-num">02 — Quest Sample</p>
       <h2 class="section-title">Sapsorrow</h2>
       <div class="section-rule"></div>
     </div>
@@ -842,7 +970,7 @@
       </div>
       <div class="reveal d1">
         <div class="chart-frame" data-lightbox-trigger>
-          <div class="chart-label">Dialogue Map</div>
+          <div class="chart-label">Quest Map</div>
           <div class="chart-img-wrap">
             <img src="https://raw.githubusercontent.com/adlerlitz/portfolio/refs/heads/main/mournstead_light.png" alt="Sapsorrow dialogue map">
           </div>
@@ -855,11 +983,102 @@
         </div>
       </div>
     </div>
+
+    <div class="accordion reveal">
+      <div class="accordion-item">
+        <button class="accordion-trigger" aria-expanded="false">
+          <span>Characters, Places &amp; Items</span>
+          <span class="accordion-icon"></span>
+        </button>
+        <div class="accordion-body">
+          <div class="accordion-body-inner">
+            <p><strong>Mournstead</strong> — A small village with a big problem; an isolated settlement on the frontier that has been facing difficulties due to dying crops and mysterious attacks on nearby roads.</p>
+            <p><strong>The Tree of Life</strong> — A gnarled, ancient tree that has been an object of cult worship in the village for the past few generations. Each year, around the autumn equinox, it produces red apples that heal whoever consumes them. They are even rumoured to restore missing limbs.</p>
+            <p><strong>Aria</strong> — A local midwife and druidess: quiet, knowledgeable, and too curious for her own good. She is a potential player companion who wants to preserve the traditions and the tree itself. She has a unique connection to nature.</p>
+            <p><strong>Tyrell</strong> — The young and stern sheriff of Mournstead, whose main concern is local safety. He has always been suspicious of the tree, as he is not fond of superstition in general. He wants to help Mournstead establish better trading routes but hasn't yet earned his stripes.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-trigger" aria-expanded="false">
+          <span>Quest Structure</span>
+          <span class="accordion-icon"></span>
+        </button>
+        <div class="accordion-body">
+          <div class="accordion-body-inner">
+            <p><strong>Objective:</strong> Investigate the aberrations that plague the village of Mournstead.</p>
+
+            <ol class="quest-list">
+              <li class="quest-step">
+                <p><strong>Defend yourself!</strong> The PC is ambushed by sentient vine-like creatures, unlike anything they've ever encountered before.</p>
+              </li>
+
+              <li class="quest-step">
+                <p><strong>Speak with the locals about the aberrations.</strong> The locals will direct the PC to Tyrell or Aria depending on their personal views. They are sympathetic but reluctant to divulge more information. It seems they are aware of the problem.</p>
+              </li>
+
+              <li class="quest-step">
+                <p><strong>Speak with Tyrell or Aria.</strong> Both Tyrell and Aria offer the PC means to heal their injuries. Tyrell will hire the PC to investigate the tree and promise a monetary incentive as well as potential access to his weapon stash, while Aria will show them her clinic and the miracles the Tree has performed in Mournstead. She will also offer side-quests that deepen the PC's involvement with the population. A PC following Tyrell's quest can still help Aria out, even if the NPCs are at odds.</p>
+              </li>
+
+              <li class="quest-step">
+                <p><strong>Investigate the Tree.</strong> The PC can:</p>
+                <ul>
+                  <li>Examine the Tree to varying degrees using their skills: Nature, Investigation, History, or Religion.</li>
+                  <li>Scour the local library for information.</li>
+                </ul>
+                <p>If they succeed on either, they will learn that the Tree most likely draws its powers from the travelers murdered by its minions. Additional lore is provided depending on the roll, information source, and abilities.</p>
+              </li>
+
+              <li class="quest-step">
+                <p><strong>Take something for yourself.</strong> When interacting with the Tree, the PC also has the option to simply grab a fruit of life or a branch for themselves, either for monetary gain or crafting cool items.</p>
+              </li>
+
+              <li class="quest-step">
+                <p><strong>Pick a course of action.</strong> Depending on the breadth of knowledge they uncover and a Persuasion roll, the PC might:</p>
+                <ul>
+                  <li>Persuade Aria that the Tree does more harm than good and get her help in communing with its spirit to end the trouble.</li>
+                  <li>Lie to Tyrell about the results of their investigation, ending it prematurely and preserving the status quo.</li>
+                </ul>
+                <p>If they do not succeed in convincing Aria to help, the final battle against the Tree, if they choose to engage in it, will be more challenging.</p>
+              </li>
+
+              <li class="quest-step">
+                <p><strong>Face the Tree Spirit.</strong> The spirit will attack if it is summoned either by the PC or Aria. The PC can summon it either using a ritual they can learn at the library or from Aria, or by crudely provoking it. If they provoke it, the battle will be tougher, as the Tree Spirit will be prepared and will use its vine-like minions against the PC. If the PC summons the Tree Spirit themselves or provoke it, they will have to engage in a mental battle as well as a physical one, having to fight a Fear spell before they are able to attack the Tree.</p>
+              </li>
+
+              <li class="quest-step">
+                <p><strong>Make your final choice.</strong> If Aria is present at the summoning, she gets injured and becomes dependent on the tree for survival. She can be convinced to sacrifice herself for the good of the town or invited to join the party to search for a solution that doesn't involve her death. Leaving with Aria means losing Tyrell's favour. Alternatively, the PC can choose to destroy the tree, killing Aria in the process but gaining a friendly town on its way to prosperity, with lower trade prices and mercenaries for hire. If Aria is absent during the battle, the Tree can be destroyed, but she will never forgive the PC for desecrating a holy site and will seek to recreate it.</p>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-trigger" aria-expanded="false">
+          <span>Consequences</span>
+          <span class="accordion-icon"></span>
+        </button>
+        <div class="accordion-body">
+          <div class="accordion-body-inner">
+            <p>If the PC doesn't defeat the Tree Spirit, Mournstead will soon fall prey to the Tree, becoming a town full of mindless thralls.</p>
+            <p>If the PC takes a branch or a fruit from the Tree and doesn't confront the Tree Spirit, they will gain a permanent tie to the Tree, either in the form of a cursed weapon (made from the branch), or a cursed upgrade to one of their statistics (consuming the fruit). This might lead to future quests.</p>
+            <p>If the PC lies to Tyrell to preserve the status quo, Tyrell learns the truth early enough to flee Mournstead with a few close allies, and puts a bounty on the PC's head.</p>
+            <p>If Aria dies in the process, Mournstead will go without a healer for a while, which might put other NPCs at risk and will affect the inhabitants' attitude towards the PC.</p>
+            <p>If Aria is recruited, the PC will have a chance to use her druid connections to find another healer for Mournstead, avoiding this issue.</p>
+            <p>If Aria is not present for the final battle, she will lose any trust she might have in the PC and will seek to create another Tree of Life.</p>
+            <p>If the PC cooperates with Tyrell, they will be granted additional privileges as an ally of the local sheriff, including access to additional weapon options, which will be otherwise inaccessible.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </section>
 
   <section id="about" class="section section-green">
     <div class="section-header reveal">
-      <p class="section-num section-num-light">03 — About Me</p>
       <h2 class="section-title section-title-light">Narrative design<br><em>and</em> production thinking</h2>
       <div class="section-rule section-rule-light"></div>
     </div>
@@ -882,7 +1101,7 @@
           <span class="tag tag-light">UE5 / Unity</span>
           <span class="tag tag-light">Localisation</span>
         </div>
-        <a href="mailto:your@email.com" class="btn btn-cream">Send me an email</a>
+        <a href="mailto:twoj@email.com" class="btn btn-cream">Send me an email</a>
       </div>
     </div>
   </section>
@@ -976,12 +1195,12 @@
     </div>
     <div style="text-align:right;">
       <p style="font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--green-soft);margin-bottom:0.5rem;">Get in touch</p>
-      <a href="mailto:your@email.com" class="footer-email">your@email.com</a>
+      <a href="mailto:twoj@email.com" class="footer-email">twoj@email.com</a>
     </div>
   </div>
   <div class="footer-bottom">
     <div class="footer-links">
-      <a href="mailto:your@email.com">Email</a>
+      <a href="mailto:twoj@email.com">Email</a>
       <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener">LinkedIn</a>
       <a href="https://itch.io" target="_blank" rel="noopener">itch.io</a>
     </div>
@@ -1011,6 +1230,25 @@
     });
   }, { threshold: 0.08 });
   document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  // Accordion
+  document.querySelectorAll('.accordion-trigger').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.parentElement;
+      const body = item.querySelector('.accordion-body');
+      const isOpen = item.classList.contains('open');
+
+      if (isOpen) {
+        body.style.maxHeight = null;
+        item.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+      } else {
+        body.style.maxHeight = body.scrollHeight + 'px';
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
 
   // Lightbox
   const lightbox = document.getElementById('lightbox');
