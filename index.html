@@ -1,1283 +1,701 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aleksandra Matlak — Narrative Design & Story Systems</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --green-deep:  #224844;
-      --green-mid:   #2E6860;
-      --green-soft:  #4A8E85;
-      --green-pale:  #AECFCB;
-      --green-ghost: #E2EFED;
-      --cream:       #F4EDD8;
-      --cream-warm:  #EBE0C6;
-      --cream-light: #FAF6EE;
-      --ink:         #131C1B;
-      --ink-mid:     #1E3230;
-      --ink-soft:    #3A5452;
-      --rule:        #BAD0CD;
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'Outfit', sans-serif;
-      font-weight: 400;
-      background: var(--cream);
-      color: var(--ink);
-      line-height: 1.75;
-      overflow-x: hidden;
-    }
-
-    a:focus-visible, button:focus-visible {
-      outline: 2px dashed var(--green-pale);
-      outline-offset: 4px;
-    }
-
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 200;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 clamp(1.5rem, 5vw, 5rem);
-      height: 56px;
-      background: var(--green-deep);
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-      transition: transform 0.35s ease;
-    }
-
-    nav.hidden { transform: translateY(-100%); }
-
-    .nav-logo {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.1rem;
-      font-weight: 400;
-      color: var(--cream);
-      text-decoration: none;
-      letter-spacing: 0.02em;
-    }
-
-    .nav-links { display: flex; gap: 0.1rem; list-style: none; }
-
-    .nav-links a {
-      display: block;
-      padding: 0.3rem 0.7rem;
-      font-size: 0.72rem;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--green-pale);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
-    .nav-links a:hover { color: var(--cream); }
-
-    .nav-contact {
-      margin-left: 0.75rem;
-      padding: 0.3rem 1rem !important;
-      border: 1px solid rgba(200,222,196,0.35);
-      border-radius: 2px;
-    }
-
-    .nav-contact:hover { background: rgba(255,255,255,0.07); }
-
-    .hero {
-      min-height: 100vh;
-      background: var(--green-deep);
-      display: grid;
-      grid-template-rows: 1fr auto;
-      padding: 0 clamp(1.5rem, 7vw, 7rem);
-      padding-top: 56px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-bg-text {
-      position: absolute;
-      bottom: -0.15em;
-      right: -0.05em;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(10rem, 22vw, 20rem);
-      font-weight: 600;
-      color: transparent;
-      -webkit-text-stroke: 1px rgba(255,255,255,0.04);
-      line-height: 1;
-      pointer-events: none;
-      user-select: none;
-    }
-
-    .hero-inner {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 4rem 0 3rem;
-    }
-
-    .hero-label {
-      font-size: 0.7rem;
-      font-weight: 500;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--green-soft);
-      margin-bottom: 2rem;
-      animation: up 0.8s ease both;
-    }
-
-    .hero-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 300;
-      font-size: clamp(4rem, 11vw, 9.5rem);
-      line-height: 0.9;
-      color: var(--cream);
-      margin-bottom: 0.15em;
-      animation: up 0.8s 0.1s ease both;
-    }
-
-    .hero-name .indent { padding-left: 0.45em; }
-
-    .hero-divider {
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-      margin: 2.5rem 0;
-      animation: up 0.8s 0.2s ease both;
-    }
-
-    .hero-divider-line { width: 60px; height: 1px; background: var(--green-soft); flex-shrink: 0; }
-
-    .hero-subtitle {
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-size: clamp(1.1rem, 2.2vw, 1.5rem);
-      color: var(--green-pale);
-      font-weight: 300;
-    }
-
-    .hero-copy {
-      max-width: 520px;
-      color: rgba(200,222,196,0.85);
-      font-size: 1rem;
-      line-height: 1.85;
-      animation: up 0.8s 0.3s ease both;
-    }
-
-    .hero-ctas {
-      display: flex;
-      gap: 1rem;
-      margin-top: 2.5rem;
-      flex-wrap: wrap;
-      animation: up 0.8s 0.4s ease both;
-    }
-
-    .hero-scroll {
-      align-self: end;
-      padding: 2rem 0;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      color: var(--green-soft);
-      font-size: 0.7rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      animation: up 0.8s 0.6s ease both;
-    }
-
-    .hero-scroll-line { width: 40px; height: 1px; background: var(--green-soft); }
-
-    @keyframes up {
-      from { opacity: 0; transform: translateY(24px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 0.75rem 1.75rem;
-      font-family: 'Outfit', sans-serif;
-      font-size: 0.75rem;
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      text-decoration: none;
-      border-radius: 2px;
-      transition: all 0.2s;
-      cursor: pointer;
-    }
-
-    .btn-cream { background: var(--cream); color: var(--green-deep); }
-    .btn-cream:hover { background: var(--cream-light); transform: translateY(-2px); }
-
-    .btn-outline { border: 1px solid rgba(200,222,196,0.4); color: var(--green-pale); background: transparent; }
-    .btn-outline:hover { border-color: var(--green-pale); background: rgba(255,255,255,0.04); transform: translateY(-2px); }
-
-    .btn-dark { background: var(--green-deep); color: var(--cream); }
-    .btn-dark:hover { background: var(--green-mid); transform: translateY(-2px); }
-
-    .section { padding: clamp(5rem, 10vw, 9rem) clamp(1.5rem, 7vw, 7rem); }
-
-    .section-cream  { background: var(--cream); }
-    .section-light  { background: var(--cream-light); }
-    .section-green  { background: var(--green-deep); }
-
-    .section-header { margin-bottom: 4rem; }
-
-    .section-num {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 0.8rem;
-      font-weight: 400;
-      letter-spacing: 0.2em;
-      color: var(--green-soft);
-      margin-bottom: 0.5rem;
-    }
-
-    .section-num-light { color: rgba(200,222,196,0.5); }
-
-    .section-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 400;
-      font-size: clamp(2.4rem, 4.5vw, 3.6rem);
-      line-height: 1.05;
-      color: var(--ink);
-    }
-
-    .section-title-light { color: var(--cream); }
-    .section-title em { font-style: italic; color: var(--green-mid); }
-    .section-title-light em { color: var(--green-pale); }
-
-    .section-rule { width: 36px; height: 1px; background: var(--rule); margin: 1.25rem 0 0; }
-    .section-rule-light { background: rgba(200,222,196,0.4); }
-
-    .honeycomb-grid {
-      display: grid;
-      grid-template-columns: 3fr 2fr;
-      gap: 3.5rem;
-      align-items: start;
-    }
-
-    .video-wrap {
-      position: relative;
-      padding-bottom: 56.25%;
-      background: var(--green-deep);
-      border-radius: 3px;
-      overflow: hidden;
-    }
-
-    .video-wrap iframe {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      border: none;
-    }
-
-    .tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.5rem; }
-
-    .tag {
-      font-size: 0.68rem;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 0.28rem 0.7rem;
-      border: 1px solid var(--rule);
-      border-radius: 2px;
-      color: var(--ink-soft);
-    }
-
-    .tag-green { border-color: var(--green-pale); color: var(--green-mid); background: var(--green-ghost); }
-    .tag-light { border-color: rgba(200,222,196,0.3); color: var(--green-pale); }
-
-    .sapsorrow-grid {
-      display: grid;
-      grid-template-columns: 2fr 3fr;
-      gap: 3.5rem;
-      align-items: start;
-    }
-
-    .chart-frame {
-      border: 1px solid var(--rule);
-      border-radius: 3px;
-      background: transparent;
-      overflow: hidden;
-      position: relative;
-      cursor: pointer;
-    }
-
-    .chart-frame + .chart-frame { margin-top: 1rem; }
-
-    .chart-img-wrap {
-      position: relative;
-      overflow: hidden;
-    }
-
-    .chart-img-wrap::after {
-      content: 'Click to expand';
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(19, 28, 27, 0.55);
-      color: var(--cream);
-      font-size: 0.72rem;
-      font-weight: 500;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      opacity: 0;
-      transition: opacity 0.25s ease;
-      pointer-events: none;
-    }
-
-    .chart-frame:hover .chart-img-wrap::after { opacity: 1; }
-
-    .chart-label {
-      font-size: 0.68rem;
-      font-weight: 500;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--ink-soft);
-      padding: 0.6rem 1rem;
-      border-bottom: 1px solid var(--rule);
-      background: var(--cream-light);
-    }
-
-    .chart-frame img {
-      width: 100%;
-      height: auto;
-      max-height: 420px;
-      object-fit: contain;
-      object-position: top;
-      display: block;
-      transition: transform 0.3s ease;
-    }
-
-    .chart-frame:hover img { transform: scale(1.03); }
-
-    .pullquote {
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-size: clamp(1.2rem, 2vw, 1.5rem);
-      font-weight: 300;
-      color: var(--green-mid);
-      line-height: 1.6;
-      border-left: 2px solid var(--green-soft);
-      padding-left: 1.5rem;
-      margin: 2rem 0;
-    }
-
-    /* ACCORDION */
-    .accordion { margin-top: 3rem; }
-
-    .accordion-item {
-      border-top: 1px solid var(--rule);
-    }
-
-    .accordion-item:last-child { border-bottom: 1px solid var(--rule); }
-
-    .accordion-trigger {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 1rem 0.25rem;
-      background: none;
-      border: none;
-      cursor: pointer;
-      font-family: 'Outfit', sans-serif;
-      font-size: 0.75rem;
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--ink-soft);
-      transition: color 0.2s;
-    }
-
-    .accordion-trigger:hover { color: var(--green-mid); }
-
-    .accordion-icon {
-      width: 20px;
-      height: 20px;
-      position: relative;
-      flex-shrink: 0;
-    }
-
-    .accordion-icon::before,
-    .accordion-icon::after {
-      content: '';
-      position: absolute;
-      background: var(--ink-soft);
-      transition: transform 0.3s ease;
-    }
-
-    .accordion-icon::before {
-      width: 12px; height: 1px;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-    }
-
-    .accordion-icon::after {
-      width: 1px; height: 12px;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-    }
-
-    .accordion-item.open .accordion-icon::after {
-      transform: translate(-50%, -50%) rotate(90deg);
-    }
-
-    .accordion-body {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.4s ease;
-    }
-
-    .accordion-body-inner {
-      padding: 0 0.25rem 1.5rem;
-    }
-
-    .accordion-body-inner p {
-      color: var(--ink-mid);
-      font-size: 0.95rem;
-      line-height: 1.8;
-      margin-bottom: 0.8rem;
-    }
-
-    .accordion-body-inner p:last-child { margin-bottom: 0; }
-
-    .accordion-body-inner strong {
-      font-weight: 500;
-      color: var(--ink);
-    }
-
-    /* QUEST LIST & STEPS */
-    .accordion-body-inner ol.quest-list {
-      padding-left: 1.25rem;
-      margin: 1rem 0;
-    }
-
-    .accordion-body-inner .quest-step {
-      padding-left: 1rem;
-      border-left: 2px solid var(--green-pale);
-      margin: 0.8rem 0 1.2rem;
-    }
-
-    .accordion-body-inner .quest-step::marker {
-      color: var(--green-mid);
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 600;
-      font-size: 1.1rem;
-    }
-
-    .accordion-body-inner .quest-step p {
-      margin-bottom: 0.5rem;
-    }
-
-    .accordion-body-inner ul {
-      list-style: none;
-      padding-left: 1.25rem;
-      margin: 0.4rem 0 0.8rem;
-    }
-
-    .accordion-body-inner ul li {
-      color: var(--ink-mid);
-      font-size: 0.95rem;
-      line-height: 1.8;
-      position: relative;
-      padding-left: 0.9rem;
-    }
-
-    .accordion-body-inner ul li::before {
-      content: '—';
-      position: absolute;
-      left: 0;
-      color: var(--green-soft);
-    }
-
-    /* LIGHTBOX */
-    .lightbox {
-      position: fixed;
-      inset: 0;
-      z-index: 999;
-      background: rgba(244, 237, 216, 0.97);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.25s ease;
-      overflow: auto;
-    }
-
-    .lightbox.active { opacity: 1; pointer-events: auto; }
-
-    .lightbox img {
-      max-width: 90vw;
-      max-height: 90vh;
-      object-fit: contain;
-      border-radius: 3px;
-      box-shadow: 0 4px 24px rgba(0,0,0,0.12);
-      cursor: zoom-in;
-      transition: none;
-    }
-
-    .lightbox.zoomed {
-      align-items: flex-start;
-      justify-content: flex-start;
-      cursor: grab;
-    }
-
-    .lightbox.zoomed img {
-      max-width: none;
-      max-height: none;
-      width: auto;
-      height: auto;
-      cursor: zoom-out;
-      margin: 2rem auto;
-      display: block;
-    }
-
-    .lightbox-close {
-      position: fixed;
-      top: 1.25rem;
-      right: 1.5rem;
-      z-index: 1000;
-      background: var(--green-deep);
-      border: none;
-      color: var(--cream);
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      font-size: 1.1rem;
-      cursor: pointer;
-      opacity: 0.85;
-      transition: opacity 0.2s;
-      font-family: 'Outfit', sans-serif;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .lightbox-close:hover { opacity: 1; }
-
-    .about-grid {
-      display: grid;
-      grid-template-columns: 220px 1fr;
-      gap: 4.5rem;
-      align-items: start;
-    }
-
-    .photo-wrap { position: relative; }
-
-    .photo-frame { width: 220px; height: 275px; border-radius: 3px; object-fit: cover; display: block; }
-
-    .photo-placeholder {
-      width: 220px;
-      height: 275px;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(200,222,196,0.2);
-      border-radius: 3px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .photo-wrap::after {
-      content: '';
-      position: absolute;
-      top: 10px; left: 10px;
-      width: 220px; height: 275px;
-      border: 1px solid rgba(200,222,196,0.2);
-      border-radius: 3px;
-      z-index: -1;
-    }
-
-    .about-text p { color: var(--green-pale); margin-bottom: 1.1rem; font-size: 1.02rem; }
-
-    .woods-inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: center;
-    }
-
-    .woods-text p { color: var(--green-pale); margin-bottom: 1rem; }
-
-    .twine-frame {
-      background: rgba(0,0,0,0.22);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 3px;
-      padding: 2rem 2.25rem;
-    }
-
-    .twine-passage {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.05rem;
-      font-style: italic;
-      color: var(--green-pale);
-      line-height: 1.85;
-      margin-bottom: 1.5rem;
-    }
-
-    .twine-choices { display: flex; flex-direction: column; gap: 0.5rem; }
-
-    .twine-choice {
-      font-size: 0.85rem;
-      color: rgba(200,222,196,0.7);
-      padding: 0.5rem 0.75rem;
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 2px;
-      cursor: default;
-      transition: all 0.2s;
-    }
-
-    .twine-choice:hover { border-color: rgba(255,255,255,0.2); color: var(--green-pale); background: rgba(255,255,255,0.04); }
-
-    .credits-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-
-    .credit-card {
-      border-radius: 3px;
-      overflow: hidden;
-      border: 1px solid var(--rule);
-      display: flex;
-      flex-direction: column;
-      background: var(--cream-warm);
-      transition: transform 0.25s ease;
-    }
-
-    .credit-card:hover { transform: translateY(-4px); }
-
-    .credit-img-wrap {
-      position: relative;
-      height: 190px;
-      background: var(--green-ghost);
-      overflow: hidden;
-    }
-
-    .credit-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
-
-    .credit-img-placeholder {
-      width: 100%; height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--ink-soft);
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-    }
-
-    .credit-img-wrap::after {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 65%;
-      background: linear-gradient(to top, rgba(34,72,68,0.9), transparent);
-    }
-
-    .credit-floating-title {
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      z-index: 2;
-      padding: 1rem 1.25rem 0.85rem;
-    }
-
-    .credit-floating-title h3 {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 400;
-      font-size: 1.25rem;
-      color: var(--cream);
-      line-height: 1.1;
-    }
-
-    .credit-floating-title span {
-      font-size: 0.65rem;
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--green-pale);
-      opacity: 0.8;
-    }
-
-    .credit-body { padding: 1.25rem; flex: 1; }
-    .credit-body p { font-size: 0.9rem; color: var(--ink-mid); line-height: 1.7; }
-
-    .writing-grid {
-      display: grid;
-      grid-template-columns: 1fr 260px;
-      gap: 5rem;
-      align-items: start;
-    }
-
-    .writing-excerpt {
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-size: clamp(1.25rem, 2vw, 1.6rem);
-      font-weight: 300;
-      line-height: 1.75;
-      color: var(--ink-mid);
-      border-left: 2px solid var(--green-soft);
-      padding-left: 1.75rem;
-      margin: 2rem 0 2.5rem;
-    }
-
-    .writing-side-img {
-      width: 100%;
-      aspect-ratio: 3/4;
-      object-fit: cover;
-      border-radius: 3px;
-      border: 1px solid var(--rule);
-      background: var(--cream-warm);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--ink-soft);
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-    }
-
-    .footer {
-      background: var(--green-deep);
-      padding: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 7vw, 7rem);
-      border-top: 1px solid rgba(255,255,255,0.06);
-    }
-
-    .footer-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      gap: 2rem;
-      margin-bottom: 3rem;
-      flex-wrap: wrap;
-    }
-
-    .footer-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 300;
-      font-size: clamp(2.5rem, 5vw, 4rem);
-      color: var(--cream);
-      line-height: 1;
-    }
-
-    .footer-subtitle {
-      font-size: 0.72rem;
-      font-weight: 500;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--green-soft);
-      margin-top: 0.5rem;
-    }
-
-    .footer-email {
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-size: 1.15rem;
-      color: var(--green-pale);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
-    .footer-email:hover { color: var(--cream); }
-
-    .footer-bottom {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-top: 2rem;
-      border-top: 1px solid rgba(255,255,255,0.06);
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-
-    .footer-links { display: flex; gap: 1.5rem; }
-
-    .footer-links a {
-      color: var(--green-pale);
-      text-decoration: none;
-      font-size: 0.8rem;
-      transition: color 0.2s;
-    }
-
-    .footer-links a:hover { color: var(--cream); }
-    .footer-copy { font-size: 0.72rem; color: var(--green-soft); }
-
-    .js .reveal {
-      opacity: 0;
-      transform: translateY(22px);
-      transition: opacity 0.65s ease, transform 0.65s ease;
-    }
-
-    .js .reveal.on { opacity: 1; transform: none; }
-    .js .reveal.d1 { transition-delay: 0.12s; }
-    .js .reveal.d2 { transition-delay: 0.24s; }
-
-    .marquee-strip {
-      background: var(--green-mid);
-      overflow: hidden;
-      white-space: nowrap;
-      padding: 0.65rem 0;
-      border-top: 1px solid rgba(255,255,255,0.06);
-    }
-
-    .marquee-track {
-      display: inline-block;
-      animation: marquee 28s linear infinite;
-    }
-
-    .marquee-track span {
-      font-size: 0.68rem;
-      font-weight: 500;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--green-pale);
-      padding: 0 2.5rem;
-    }
-
-    .marquee-track span.dot { color: var(--green-soft); padding: 0; letter-spacing: 0; }
-
-    @keyframes marquee {
-      from { transform: translateX(0); }
-      to   { transform: translateX(-50%); }
-    }
-
-    @media (max-width: 800px) {
-      .honeycomb-grid, .sapsorrow-grid, .about-grid,
-      .writing-grid, .credits-grid, .woods-inner { grid-template-columns: 1fr; }
-      .hero-name .indent { padding-left: 0; }
-      .nav-links { display: none; }
-      .photo-wrap::after { display: none; }
-      .photo-frame, .photo-placeholder { width: 100%; height: 220px; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aleksandra Matlak — Narrative Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #161310;
+    --bg-surface: #1d1a15;
+    --bg-card: #231f19;
+    --border: #2e2920;
+    --border-accent: #4a3e28;
+    --text-primary: #e8dfc8;
+    --text-secondary: #8a8070;
+    --text-muted: #5a5248;
+    --amber: #c49535;
+    --amber-light: #e0b85a;
+    --amber-dim: #8a6820;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text-primary);
+    font-family: var(--sans);
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 1.75;
+    overflow-x: hidden;
+  }
+
+  /* Grain texture overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+    opacity: 0.028;
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  /* Top navigation */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 3rem;
+    height: 64px;
+    border-bottom: 1px solid var(--border);
+    background: rgba(22, 19, 16, 0.92);
+    backdrop-filter: blur(12px);
+  }
+
+  .nav-name {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    color: var(--text-primary);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--amber-light); }
+
+  /* Layout */
+  main { padding-top: 64px; }
+
+  section {
+    padding: 7rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 3rem;
+  }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 1rem;
+  }
+
+  /* Hero */
+  #hero {
+    padding: 10rem 0 8rem;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+
+  #hero::after {
+    content: '';
+    position: absolute;
+    top: -40%;
+    right: -20%;
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(ellipse at center, rgba(196, 149, 53, 0.055) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  .hero-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 2rem;
+  }
+
+  h1 {
+    font-family: var(--serif);
+    font-size: clamp(3.5rem, 7vw, 6.5rem);
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    color: var(--text-primary);
+    margin-bottom: 2.5rem;
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--amber-light);
+  }
+
+  .hero-body {
+    max-width: 560px;
+    font-size: 17px;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    margin-bottom: 3rem;
+  }
+
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0.75rem 1.75rem;
+    border: 1px solid var(--amber-dim);
+    color: var(--amber-light);
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s, background 0.2s;
+  }
+
+  .hero-cta:hover {
+    border-color: var(--amber-light);
+    background: rgba(196, 149, 53, 0.08);
+  }
+
+  /* About */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: start;
+  }
+
+  h2 {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 300;
+    line-height: 1.15;
+    color: var(--text-primary);
+    margin-bottom: 1.75rem;
+  }
+
+  h2 em { font-style: italic; color: var(--amber-light); }
+
+  p { color: var(--text-secondary); margin-bottom: 1.25rem; }
+  p:last-child { margin-bottom: 0; }
+
+  .skills-list {
+    margin-top: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border-top: 1px solid var(--border);
+  }
+
+  .skill-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .skill-label {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    min-width: 130px;
+  }
+
+  .skill-value {
+    font-size: 14px;
+    color: var(--text-secondary);
+    text-align: right;
+  }
+
+  /* Project sections */
+  .project-header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 2rem;
+    margin-bottom: 4rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .project-meta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .tag {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 400;
+    padding: 4px 10px;
+    border: 1px solid var(--border-accent);
+    color: var(--amber-dim);
+  }
+
+  .project-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .project-body.full { grid-template-columns: 1fr; max-width: 680px; }
+
+  /* Image placeholder (for when real screenshots are added) */
+  .img-placeholder {
+    aspect-ratio: 16/9;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* Quest Design section */
+  .quest-doc {
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    padding: 3rem;
+    max-width: 760px;
+    position: relative;
+  }
+
+  .quest-doc::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 100%;
+    background: var(--amber-dim);
+  }
+
+  .quest-title {
+    font-family: var(--serif);
+    font-size: 2rem;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .quest-subtitle {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 2.5rem;
+  }
+
+  .quest-section-head {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 2rem 0 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .entity-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .entity-card {
+    padding: 1.25rem;
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+  }
+
+  .entity-name {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--amber-light);
+    margin-bottom: 0.25rem;
+  }
+
+  .entity-role {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 0.75rem;
+  }
+
+  .entity-desc {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  .quest-steps {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .quest-step {
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    gap: 1rem;
+    padding: 1.25rem 0;
+    border-bottom: 1px solid var(--border);
+    align-items: start;
+  }
+
+  .step-num {
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    font-weight: 300;
+    color: var(--amber-dim);
+    line-height: 1;
+    padding-top: 2px;
+  }
+
+  .step-text {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  .step-text strong {
+    color: var(--text-primary);
+    font-weight: 400;
+  }
+
+  /* Footer */
+  footer {
+    padding: 5rem 0;
+    text-align: center;
+  }
+
+  .footer-name {
+    font-family: var(--serif);
+    font-size: 2.5rem;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+  }
+
+  .footer-email {
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    color: var(--amber);
+    text-decoration: none;
+  }
+
+  .footer-email:hover { color: var(--amber-light); }
+
+  /* Reveal animation */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    nav { padding: 0 1.5rem; }
+    .nav-links { display: none; }
+    .container { padding: 0 1.5rem; }
+    section { padding: 5rem 0; }
+    .about-grid, .project-body { grid-template-columns: 1fr; gap: 3rem; }
+    .entity-grid { grid-template-columns: 1fr; }
+    .project-header { grid-template-columns: 1fr; }
+    .quest-doc { padding: 2rem 1.5rem; }
+    h1 { font-size: 3rem; }
+  }
+</style>
 </head>
 <body>
 
-<nav id="main-nav">
-  <a href="#top" class="nav-logo">Aleksandra Matlak</a>
+<nav>
+  <a href="#hero" class="nav-name">Aleksandra Matlak</a>
   <ul class="nav-links">
-    <li><a href="#honeycomb">Honeycomb</a></li>
-    <li><a href="#sapsorrow">Sapsorrow</a></li>
     <li><a href="#about">About</a></li>
-    <li><a href="#woods">Through the Woods</a></li>
-    <li><a href="#credits">Credits</a></li>
-    <li><a href="#writing">Writing</a></li>
-    <li><a href="#contact" class="nav-contact">Contact</a></li>
+    <li><a href="#honeycomb">Honeycomb</a></li>
+    <li><a href="#hairdresser">Hairdresser Sim</a></li>
+    <li><a href="#houseflipper">House Flipper</a></li>
+    <li><a href="#quest">Quest Design</a></li>
   </ul>
 </nav>
 
 <main>
 
-  <section id="top" class="hero">
-    <div class="hero-bg-text" aria-hidden="true">AM</div>
-    <div class="hero-inner">
-      <p class="hero-label">Narrative Design &amp; Story Systems</p>
-      <h1 class="hero-name">
-        Aleksandra<br>
-        <span class="indent">Matlak</span>
-      </h1>
-      <div class="hero-divider">
-        <div class="hero-divider-line"></div>
-        <p class="hero-subtitle">Narration &amp; Design</p>
-      </div>
-      <p class="hero-copy">
-        I write to create moments of fun for the player. Video games are where I feel most at home — crafting characters worth travelling with, weaving stories that enhance gameplay, and designing systems that serve the narrative. I'd love to help you build experiences that stay with players long after they've put down the controller.
-      </p>
-      <div class="hero-ctas">
-        <a href="#honeycomb" class="btn btn-cream">View my work</a>
-        <a href="#contact" class="btn btn-outline">Get in touch</a>
-      </div>
-    </div>
-    <div class="hero-scroll">
-      <div class="hero-scroll-line"></div>
-      Scroll to explore
+  <!-- Hero -->
+  <section id="hero">
+    <div class="container">
+      <p class="hero-eyebrow">Narrative Design &amp; Writing</p>
+      <h1>Making stories<br>feel <em>inevitable</em></h1>
+      <p class="hero-body">I write to create moments of fun — for the player, and for myself. Video games are where I feel most at home: crafting characters your players will want to travel with, weaving stories that enhance gameplay, and designing mechanics that support the narrative. I'd love to help you build experiences that stay with your players long after they've put down the controller.</p>
+      <a href="mailto:matlakaleksandra@gmail.com" class="hero-cta">Get in touch →</a>
     </div>
   </section>
 
-  <div class="marquee-strip" aria-hidden="true">
-    <div class="marquee-track">
-      <span>Narrative Design</span><span class="dot">·</span>
-      <span>Branching Systems</span><span class="dot">·</span>
-      <span>VO Direction</span><span class="dot">·</span>
-      <span>Localisation</span><span class="dot">·</span>
-      <span>UE5 &amp; Unity</span><span class="dot">·</span>
-      <span>Story Systems</span><span class="dot">·</span>
-      <span>Dialogue Design</span><span class="dot">·</span>
-      <span>Production</span><span class="dot">·</span>
-      <span>Narrative Design</span><span class="dot">·</span>
-      <span>Branching Systems</span><span class="dot">·</span>
-      <span>VO Direction</span><span class="dot">·</span>
-      <span>Localisation</span><span class="dot">·</span>
-      <span>UE5 &amp; Unity</span><span class="dot">·</span>
-      <span>Story Systems</span><span class="dot">·</span>
-      <span>Dialogue Design</span><span class="dot">·</span>
-      <span>Production</span><span class="dot">·</span>
-    </div>
-  </div>
-
-  <section id="honeycomb" class="section section-light">
-    <div class="section-header reveal">
-      <p class="section-num">01 — Featured Project</p>
-      <h2 class="section-title">Honeycomb:<br><em>The World Beyond</em></h2>
-      <div class="section-rule"></div>
-    </div>
-    <div class="honeycomb-grid">
-      <div class="reveal">
-        <div class="video-wrap">
-          <iframe src="https://www.youtube.com/embed/gVWH-5UhZf0?si=jiRxiUAa9qmSvR5c" title="Honeycomb: The World Beyond trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  <!-- About -->
+  <section id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="reveal">
+          <p class="section-label">About Me</p>
+          <h2>I speak both <em>Creative</em> and Producer</h2>
+          <p>I'm Aleksandra, a narrative designer and writer with 3 years of commercial experience in games. I specialize in dialogue, worldbuilding, and gameplay-integrated storytelling, with a firm grasp of implementation tools like Unity, Articy, and the Dialogue System for Unity.</p>
+          <p>Thanks to my degree in English Literature &amp; Culture, I understand language both as a system and a means of communication, making it easy to reach players and publishers alike. I am currently pursuing a Master's in Project Management, further developing my organizational and leadership skills.</p>
+          <p>I've collaborated with producers on pitch decks, taken part in publisher meetings, collaborated on localization workflows, and was responsible for actor direction on multiple projects. So if you're looking for someone who can bridge creative and production, I'm your person.</p>
+          <a href="mailto:matlakaleksandra@gmail.com" class="hero-cta" style="margin-top: 2rem;">Send me an email →</a>
+        </div>
+        <div class="reveal" style="transition-delay: 0.15s;">
+          <div class="skills-list">
+            <div class="skill-row">
+              <span class="skill-label">Specialization</span>
+              <span class="skill-value">Dialogue · Worldbuilding · Quest Design</span>
+            </div>
+            <div class="skill-row">
+              <span class="skill-label">Tools</span>
+              <span class="skill-value">Unity · Articy:draft · Dialogue System · UE5 · Twine</span>
+            </div>
+            <div class="skill-row">
+              <span class="skill-label">Production</span>
+              <span class="skill-value">Jira · ClickUp · Miro</span>
+            </div>
+            <div class="skill-row">
+              <span class="skill-label">Languages</span>
+              <span class="skill-value">English C2 · German B1 · French B1</span>
+            </div>
+            <div class="skill-row">
+              <span class="skill-label">Education</span>
+              <span class="skill-value">English Literature BA · Project Management MA</span>
+            </div>
+            <div class="skill-row">
+              <span class="skill-label">Experience</span>
+              <span class="skill-value">3+ years commercial · Frozen Way Studio</span>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="reveal d1">
-        <div class="tags">
-          <span class="tag tag">Open World</span>
-          <span class="tag tag">Sci-Fi Survival</span>
-          <span class="tag">UE5</span>
-          <span class="tag">Dialogue</span>
-          <span class="tag">Localisation</span>
+    </div>
+  </section>
+
+  <!-- Honeycomb -->
+  <section id="honeycomb">
+    <div class="container">
+      <div class="project-header reveal">
+        <div>
+          <p class="section-label">Project 01</p>
+          <h2>Honeycomb:<br><em>The World Beyond</em></h2>
         </div>
-        <p style="color:var(--ink-mid);margin-bottom:1rem;">Honeycomb: The World Beyond is an open-world sci-fi survival game currently in development at Frozen Way. As the narrative designer, I owned the full writing scope — character voice documents, dialogue, UI strings, notification copy, and localisation workflows — but the real craft was in designing for an open world: working closely with game and level designers to anchor story in space, embracing the uncertainty of player-driven pacing, and pushing for linear structure where the narrative needed it most.</p>
-        <p style="color:var(--ink-mid);margin-bottom:1.5rem;">Beyond writing, I contributed to publisher-facing documentation, collaborated with producers on pitch materials, and asynchronously directed voice actors. Honeycomb recently reached release candidate stage.</p>
-        <div class="tags">
-          <span class="tag">Dialogue Design</span>
+        <div class="project-meta">
+          <span class="tag">Dialogue Writing</span>
+          <span class="tag">Worldbuilding</span>
+          <span class="tag">Quest Design</span>
+          <span class="tag">Object Descriptions</span>
+          <span class="tag">Guides</span>
+        </div>
+      </div>
+      <div class="project-body reveal">
+        <div>
+          <p>I worked on the story trailer for Honeycomb: The World Beyond, starting with the initial outline and reviewing the storyboard to ensure it matched the intended tone. I wrote all voiceover dialogue and recording instructions for the actress, reviewed the final audio, and collaborated with animators by providing a clear brief that outlined emotional cues and scene-specific requirements.</p>
+          <p>I designed onboarding quests within an open world structure, balancing player freedom with narrative coherence and emotional throughline.</p>
+        </div>
+        <div class="img-placeholder">Screenshot / Trailer Still</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hairdresser Simulator -->
+  <section id="hairdresser">
+    <div class="container">
+      <div class="project-header reveal">
+        <div>
+          <p class="section-label">Project 02</p>
+          <h2>Hairdresser<br><em>Simulator</em></h2>
+        </div>
+        <div class="project-meta">
+          <span class="tag">Dialogue Writing</span>
+          <span class="tag">NPC Design</span>
+          <span class="tag">Character Arcs</span>
+        </div>
+      </div>
+      <div class="project-body reveal">
+        <div class="img-placeholder">Screenshot</div>
+        <div>
+          <p>In Hairdresser Simulator, the player meets 27 unique NPCs, each of whom returns to the salon three times over the course of their personal arc. I designed every one of these characters with a focus on emotional nuance and storytelling through small, intimate moments.</p>
+          <p>With each visit, players uncover an event or shift in the NPC's life that brought them back — whether for comfort, reinvention, or a bit of peace. These glimpses into the characters' lives allow players to gradually piece together who they are, creating the quiet, satisfying fantasy of a hairdresser who becomes a trusted confidante.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- House Flipper -->
+  <section id="houseflipper">
+    <div class="container">
+      <div class="project-header reveal">
+        <div>
+          <p class="section-label">Project 03</p>
+          <h2>House Flipper<br><em>Remastered Collection</em></h2>
+        </div>
+        <div class="project-meta">
+          <span class="tag">Dialogue Writing</span>
+          <span class="tag">NPC Design</span>
           <span class="tag">VO Direction</span>
-          <span class="tag">Pitch Docs</span>
-          <span class="tag">Loc Pipeline</span>
+          <span class="tag">Character Briefs</span>
         </div>
+      </div>
+      <div class="project-body reveal">
+        <div>
+          <p>House Flipper Remastered Collection presented a unique challenge as a popular game with a large following with fond memories of the original gameplay. I reimagined the email-based quests as fully voiced cutscenes, preserving the charm and personality of the original text while expanding it into dynamic stories worth following.</p>
+          <p>This involved creating briefs for our art team and voice actors, ensuring that character, tone, and pacing translated seamlessly from page to performance.</p>
+        </div>
+        <div class="img-placeholder">Screenshot</div>
       </div>
     </div>
   </section>
 
-  <section id="sapsorrow" class="section section-cream">
-    <div class="section-header reveal">
-      <p class="section-num">02 — Quest Sample</p>
-      <h2 class="section-title">Sapsorrow</h2>
-      <div class="section-rule"></div>
-    </div>
-    <div class="sapsorrow-grid">
-      <div class="reveal">
-        <blockquote class="pullquote">Sapsorrow is an original quest design sample created to demonstrate branching structure, companion consequence design, and morally ambiguous outcomes. It was designed as a standalone piece for a Baldur's Gate 3-adjacent RPG context. </blockquote>
-        <div class="tags">
-          <span class="tag tag-green">Branching Architecture</span>
-          <span class="tag tag-green">Player Agency</span>
-          <span class="tag tag-green">Narrative Design</span>
-        </div>
+  <!-- Quest Design Sample -->
+  <section id="quest">
+    <div class="container">
+      <div class="reveal" style="margin-bottom: 3rem;">
+        <p class="section-label">Quest Design Sample</p>
+        <h2>Original Quest:<br><em>Sapsorrow</em></h2>
+        <p style="max-width: 560px;">A branching quest design sample demonstrating character-driven investigation, meaningful player choice, and multi-path resolution with lasting consequences.</p>
       </div>
-      <div class="reveal d1">
-        <div class="chart-frame" data-lightbox-trigger>
-          <div class="chart-label">Quest Map</div>
-          <div class="chart-img-wrap">
-            <img src="https://raw.githubusercontent.com/adlerlitz/portfolio/refs/heads/main/mournstead_light.png" alt="Sapsorrow dialogue map">
+
+      <div class="quest-doc reveal">
+        <p class="quest-title">Sapsorrow</p>
+        <p class="quest-subtitle">Quest Design Document — Sample</p>
+
+        <p class="quest-section-head">Objective</p>
+        <p style="font-size: 14px; margin-bottom: 0;">Investigate the aberrations that plague the village of Mournstead.</p>
+
+        <p class="quest-section-head">Key Characters &amp; Locations</p>
+        <div class="entity-grid">
+          <div class="entity-card">
+            <p class="entity-name">Mournstead</p>
+            <p class="entity-role">Location</p>
+            <p class="entity-desc">A small village with a big problem; an isolated frontier settlement facing dying crops and mysterious attacks on nearby roads.</p>
+          </div>
+          <div class="entity-card">
+            <p class="entity-name">The Tree of Life</p>
+            <p class="entity-role">Key Object</p>
+            <p class="entity-desc">A gnarled ancient tree, object of cult worship. Each autumn equinox it produces red healing apples — rumored to restore missing limbs.</p>
+          </div>
+          <div class="entity-card">
+            <p class="entity-name">Aria</p>
+            <p class="entity-role">Potential Companion</p>
+            <p class="entity-desc">Local midwife and druidess: quiet, knowledgeable, too curious for her own good. Wants to preserve traditions and the tree. Has a unique connection to nature.</p>
+          </div>
+          <div class="entity-card">
+            <p class="entity-name">Tyrell</p>
+            <p class="entity-role">Sheriff</p>
+            <p class="entity-desc">Young, stern, suspicious of superstition. Wants to help Mournstead establish better trade routes but hasn't yet earned his stripes.</p>
           </div>
         </div>
-        <div class="chart-frame" data-lightbox-trigger>
-          <div class="chart-label">Consequence Flowchart</div>
-          <div class="chart-img-wrap">
-            <img src="https://raw.githubusercontent.com/adlerlitz/portfolio/refs/heads/main/mournstead_consequences_light.png" alt="Sapsorrow consequence flowchart">
-          </div>
-        </div>
-      </div>
-    </div>
 
-    <div class="accordion reveal">
-      <div class="accordion-item">
-        <button class="accordion-trigger" aria-expanded="false">
-          <span>Characters, Places &amp; Items</span>
-          <span class="accordion-icon"></span>
-        </button>
-        <div class="accordion-body">
-          <div class="accordion-body-inner">
-            <p><strong>Mournstead</strong> — A small village with a big problem; an isolated settlement on the frontier that has been facing difficulties due to dying crops and mysterious attacks on nearby roads.</p>
-            <p><strong>The Tree of Life</strong> — A gnarled, ancient tree that has been an object of cult worship in the village for the past few generations. Each year, around the autumn equinox, it produces red apples that heal whoever consumes them. They are even rumoured to restore missing limbs.</p>
-            <p><strong>Aria</strong> — A local midwife and druidess: quiet, knowledgeable, and too curious for her own good. She is a potential player companion who wants to preserve the traditions and the tree itself. She has a unique connection to nature.</p>
-            <p><strong>Tyrell</strong> — The young and stern sheriff of Mournstead, whose main concern is local safety. He has always been suspicious of the tree, as he is not fond of superstition in general. He wants to help Mournstead establish better trading routes but hasn't yet earned his stripes.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="accordion-item">
-        <button class="accordion-trigger" aria-expanded="false">
-          <span>Quest Structure</span>
-          <span class="accordion-icon"></span>
-        </button>
-        <div class="accordion-body">
-          <div class="accordion-body-inner">
-            <p><strong>Objective:</strong> Investigate the aberrations that plague the village of Mournstead.</p>
-
-            <ol class="quest-list">
-              <li class="quest-step">
-                <p><strong>Defend yourself!</strong> The PC is ambushed by sentient vine-like creatures, unlike anything they've ever encountered before.</p>
-              </li>
-
-              <li class="quest-step">
-                <p><strong>Speak with the locals about the aberrations.</strong> The locals will direct the PC to Tyrell or Aria depending on their personal views. They are sympathetic but reluctant to divulge more information. It seems they are aware of the problem.</p>
-              </li>
-
-              <li class="quest-step">
-                <p><strong>Speak with Tyrell or Aria.</strong> Both Tyrell and Aria offer the PC means to heal their injuries. Tyrell will hire the PC to investigate the tree and promise a monetary incentive as well as potential access to his weapon stash, while Aria will show them her clinic and the miracles the Tree has performed in Mournstead. She will also offer side-quests that deepen the PC's involvement with the population. A PC following Tyrell's quest can still help Aria out, even if the NPCs are at odds.</p>
-              </li>
-
-              <li class="quest-step">
-                <p><strong>Investigate the Tree.</strong> The PC can:</p>
-                <ul>
-                  <li>Examine the Tree to varying degrees using their skills: Nature, Investigation, History, or Religion.</li>
-                  <li>Scour the local library for information.</li>
-                </ul>
-                <p>If they succeed on either, they will learn that the Tree most likely draws its powers from the travelers murdered by its minions. Additional lore is provided depending on the roll, information source, and abilities.</p>
-              </li>
-
-              <li class="quest-step">
-                <p><strong>Take something for yourself.</strong> When interacting with the Tree, the PC also has the option to simply grab a fruit of life or a branch for themselves, either for monetary gain or crafting cool items.</p>
-              </li>
-
-              <li class="quest-step">
-                <p><strong>Pick a course of action.</strong> Depending on the breadth of knowledge they uncover and a Persuasion roll, the PC might:</p>
-                <ul>
-                  <li>Persuade Aria that the Tree does more harm than good and get her help in communing with its spirit to end the trouble.</li>
-                  <li>Lie to Tyrell about the results of their investigation, ending it prematurely and preserving the status quo.</li>
-                </ul>
-                <p>If they do not succeed in convincing Aria to help, the final battle against the Tree, if they choose to engage in it, will be more challenging.</p>
-              </li>
-
-              <li class="quest-step">
-                <p><strong>Face the Tree Spirit.</strong> The spirit will attack if it is summoned either by the PC or Aria. The PC can summon it either using a ritual they can learn at the library or from Aria, or by crudely provoking it. If they provoke it, the battle will be tougher, as the Tree Spirit will be prepared and will use its vine-like minions against the PC. If the PC summons the Tree Spirit themselves or provoke it, they will have to engage in a mental battle as well as a physical one, having to fight a Fear spell before they are able to attack the Tree.</p>
-              </li>
-
-              <li class="quest-step">
-                <p><strong>Make your final choice.</strong> If Aria is present at the summoning, she gets injured and becomes dependent on the tree for survival. She can be convinced to sacrifice herself for the good of the town or invited to join the party to search for a solution that doesn't involve her death. Leaving with Aria means losing Tyrell's favour. Alternatively, the PC can choose to destroy the tree, killing Aria in the process but gaining a friendly town on its way to prosperity, with lower trade prices and mercenaries for hire. If Aria is absent during the battle, the Tree can be destroyed, but she will never forgive the PC for desecrating a holy site and will seek to recreate it.</p>
-              </li>
-            </ol>
-          </div>
-        </div>
+        <p class="quest-section-head">Quest Steps</p>
+        <ol class="quest-steps">
+          <li class="quest-step">
+            <span class="step-num">01</span>
+            <p class="step-text"><strong>Defend yourself.</strong> The PC is ambushed by sentient vine-like creatures, unlike anything they've encountered before.</p>
+          </li>
+          <li class="quest-step">
+            <span class="step-num">02</span>
+            <p class="step-text"><strong>Speak with locals.</strong> Sympathetic but reluctant, they direct the PC to Tyrell or Aria depending on personal views — they seem aware of the problem.</p>
+          </li>
+          <li class="quest-step">
+            <span class="step-num">03</span>
+            <p class="step-text"><strong>Choose your contact.</strong> Tyrell hires the PC to investigate the tree. Aria shows her clinic and the miracles the Tree has performed — and offers side-quests. A PC following Tyrell can still help Aria.</p>
+          </li>
+          <li class="quest-step">
+            <span class="step-num">04</span>
+            <p class="step-text"><strong>Investigate the Tree.</strong> Using Nature, Investigation, History, or Religion skills — or the local library — the PC learns the Tree draws power from murdered travelers. Additional lore scales with rolls and knowledge sources.</p>
+          </li>
+          <li class="quest-step">
+            <span class="step-num">05</span>
+            <p class="step-text"><strong>Pick a course of action.</strong> Persuade Aria the Tree does more harm than good. Lie to Tyrell for personal gain — fruit, branches, crafting items. Or pursue another path entirely.</p>
+          </li>
+          <li class="quest-step">
+            <span class="step-num">06</span>
+            <p class="step-text"><strong>Face the Tree Spirit.</strong> Attacks if summoned without proper ritual, or if the PC takes a branch. If Aria is present, she barely survives — the Tree trusts her for her longtime service.</p>
+          </li>
+          <li class="quest-step">
+            <span class="step-num">07</span>
+            <p class="step-text"><strong>Make your final choice.</strong> If Aria was harmed, she becomes dependent on the Tree. Sacrifice herself for the town? Join the party searching for another solution — losing Tyrell's favor? Or destroy the Tree, killing Aria, but gaining a prosperous ally town with lower trade prices and mercs for hire.</p>
+          </li>
+        </ol>
       </div>
 
-      <div class="accordion-item">
-        <button class="accordion-trigger" aria-expanded="false">
-          <span>Consequences</span>
-          <span class="accordion-icon"></span>
-        </button>
-        <div class="accordion-body">
-          <div class="accordion-body-inner">
-            <p>If the PC doesn't defeat the Tree Spirit, Mournstead will soon fall prey to the Tree, becoming a town full of mindless thralls.</p>
-            <p>If the PC takes a branch or a fruit from the Tree and doesn't confront the Tree Spirit, they will gain a permanent tie to the Tree, either in the form of a cursed weapon (made from the branch), or a cursed upgrade to one of their statistics (consuming the fruit). This might lead to future quests.</p>
-            <p>If the PC lies to Tyrell to preserve the status quo, Tyrell learns the truth early enough to flee Mournstead with a few close allies, and puts a bounty on the PC's head.</p>
-            <p>If Aria dies in the process, Mournstead will go without a healer for a while, which might put other NPCs at risk and will affect the inhabitants' attitude towards the PC.</p>
-            <p>If Aria is recruited, the PC will have a chance to use her druid connections to find another healer for Mournstead, avoiding this issue.</p>
-            <p>If Aria is not present for the final battle, she will lose any trust she might have in the PC and will seek to create another Tree of Life.</p>
-            <p>If the PC cooperates with Tyrell, they will be granted additional privileges as an ally of the local sheriff, including access to additional weapon options, which will be otherwise inaccessible.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </section>
-
-  <section id="about" class="section section-green">
-    <div class="section-header reveal">
-      <h2 class="section-title section-title-light">Narrative design<br><em>and</em> production thinking</h2>
-      <div class="section-rule section-rule-light"></div>
-    </div>
-    <div class="about-grid">
-      <div class="photo-wrap reveal">
-        <div class="photo-placeholder">
-          <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
-            <circle cx="22" cy="15" r="9" fill="#C8DEC4" opacity="0.4"/>
-            <path d="M4 40c0-9.941 8.059-18 18-18s18 8.059 18 18" fill="#C8DEC4" opacity="0.4"/>
-          </svg>
-        </div>
-      </div>
-      <div class="about-text reveal d1">
-        <p>I'm Aleksandra, a narrative designer and writer with 3.5 years of commercial experience in games. I specialise in dialogue, branching systems, and gameplay-integrated storytelling, with hands-on experience in Unity and UE5, and a Master's in Project Management in progress.</p>
-        <p>I've collaborated with producers on pitch decks, taken part in publisher meetings, built localisation workflows, and directed voice actors across multiple projects. If you're looking for someone who can bridge creative and production — I'm your person.</p>
-        <div class="tags" style="margin-top:1.5rem;margin-bottom:1.75rem;">
-          <span class="tag tag-light">Dialogue Systems</span>
-          <span class="tag tag-light">VO Direction</span>
-          <span class="tag tag-light">Production</span>
-          <span class="tag tag-light">UE5 / Unity</span>
-          <span class="tag tag-light">Localisation</span>
-        </div>
-        <a href="mailto:twoj@email.com" class="btn btn-cream">Send me an email</a>
-      </div>
-    </div>
-  </section>
-
-  <section id="woods" class="section section-cream">
-    <div class="section-header reveal">
-      <p class="section-num">04 — Interactive Work</p>
-      <h2 class="section-title">Through the <em>Woods</em></h2>
-      <div class="section-rule"></div>
-    </div>
-    <div style="background:var(--green-deep);border-radius:4px;padding:clamp(2.5rem,5vw,4rem);">
-      <div class="woods-inner">
-        <div class="woods-text reveal">
-          <p>A short choose-your-own-adventure built in Twine. Character-driven and atmospheric, structured around a single irreversible choice. Play time is under ten minutes.</p>
-          <p style="margin-bottom:2rem;">It's a quieter piece — written to explore how much weight a small moment can carry when the player holds the pen.</p>
-          <a href="https://itch.io" target="_blank" rel="noopener" class="btn btn-outline">Play on itch.io →</a>
-        </div>
-        <div class="twine-frame reveal d1">
-          <p class="twine-passage">The path branches here. To your left, the older trees — roots surfacing like knuckles, shadows pooling between them. To your right, a gap in the canopy, grey light falling through.</p>
-          <div class="twine-choices">
-            <div class="twine-choice">→ Take the older path.</div>
-            <div class="twine-choice">→ Move towards the light.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="credits" class="section section-light">
-    <div class="section-header reveal">
-      <p class="section-num">05 — Shipped Titles</p>
-      <h2 class="section-title">Released <em>Work</em></h2>
-      <div class="section-rule"></div>
-    </div>
-    <div class="credits-grid">
-      <div class="credit-card reveal">
-        <div class="credit-img-wrap">
-          <div class="credit-img-placeholder">Screenshot</div>
-          <div class="credit-floating-title">
-            <span>Released</span>
-            <h3>Hairdresser Simulator</h3>
-          </div>
-        </div>
-        <div class="credit-body">
-          <p>Narrative design and writing across the full production cycle. Character dialogue, UI copy, and maintaining consistent tone across a lighthearted, personality-driven simulation title.</p>
-        </div>
-      </div>
-      <div class="credit-card reveal d1">
-        <div class="credit-img-wrap">
-          <div class="credit-img-placeholder">Screenshot</div>
-          <div class="credit-floating-title">
-            <span>Released</span>
-            <h3>House Flipper: Remastered Collection</h3>
-          </div>
-        </div>
-        <div class="credit-body">
-          <p>Writing and localisation on the remastered edition. UI string revision, consistency passes across languages, and documentation supporting the localisation pipeline.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="writing" class="section section-cream">
-    <div class="section-header reveal">
-      <p class="section-num">06 — Personal Writing</p>
-      <h2 class="section-title">Writing <em>Sample</em></h2>
-      <div class="section-rule"></div>
-    </div>
-    <div class="writing-grid">
-      <div class="reveal">
-        <p style="color:var(--ink-mid);">Outside of games, I'm working on Viridium, a Gothic Space Opera and Sci-Fi Horror novel — a project that keeps my worldbuilding muscles sharp and lets me explore long-form narrative structure, unreliable narration, and the kind of slow-burn character work that doesn't always fit inside a quest. I invite you to take a read here.</p>
-        <blockquote class="writing-excerpt">
-<p>A thrill ran through her like a child discovering a secret toy. The thread snapped at her will — and the pain came rushing back.</p>
-        </blockquote>
-        <p style="color:var(--ink-mid);">The full sample covers approximately 10 pages. Available via the link below or on request.</p>
-        <a href="#" class="btn btn-dark">Read full sample →</a>
-      </div>
-      <div class="reveal d1">
-        <div class="writing-side-img"><span style="font-size:0.9rem;font-style:italic;">Image</span></div>
-      </div>
     </div>
   </section>
 
 </main>
 
-<footer id="contact" class="footer">
-  <div class="footer-top">
-    <div>
-      <div class="footer-name">Aleksandra Matlak</div>
-      <div class="footer-subtitle">Narrative Design &amp; Story Systems</div>
-    </div>
-    <div style="text-align:right;">
-      <p style="font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--green-soft);margin-bottom:0.5rem;">Get in touch</p>
-      <a href="mailto:matlakaleksandra@gmail.com" class="footer-email">matlakaleksandra@gmail.com</a>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <div class="footer-links">
-      <a href="mailto:twoj@email.com">Email</a>
-      <a href="https://linkedin.com/in/aleksandramatlak" target="_blank" rel="noopener">LinkedIn</a>
-    </div>
-    <p class="footer-copy">© 2026 Aleksandra Matlak</p>
+<footer>
+  <div class="container">
+    <p class="footer-name">Aleksandra Matlak</p>
+    <a href="mailto:matlakaleksandra@gmail.com" class="footer-email">matlakaleksandra@gmail.com</a>
   </div>
 </footer>
 
-<div class="lightbox" id="lightbox">
-  <button class="lightbox-close" aria-label="Close">✕</button>
-  <img src="" alt="">
-</div>
-
 <script>
-  document.documentElement.classList.add('js');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
 
-  const nav = document.getElementById('main-nav');
-  let last = 0;
-  window.addEventListener('scroll', () => {
-    const y = window.scrollY;
-    nav.classList.toggle('hidden', y > last && y > 80);
-    last = y;
-  }, { passive: true });
-
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) { e.target.classList.add('on'); obs.unobserve(e.target); }
-    });
-  }, { threshold: 0.08 });
-  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
-
-  // Accordion
-  document.querySelectorAll('.accordion-trigger').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const item = btn.parentElement;
-      const body = item.querySelector('.accordion-body');
-      const isOpen = item.classList.contains('open');
-
-      if (isOpen) {
-        body.style.maxHeight = null;
-        item.classList.remove('open');
-        btn.setAttribute('aria-expanded', 'false');
-      } else {
-        body.style.maxHeight = body.scrollHeight + 'px';
-        item.classList.add('open');
-        btn.setAttribute('aria-expanded', 'true');
-      }
-    });
+  document.querySelectorAll('.reveal').forEach((el, i) => {
+    el.style.transitionDelay = el.style.transitionDelay || (i % 3 * 0.1) + 's';
+    observer.observe(el);
   });
-
-  // Lightbox
-  const lightbox = document.getElementById('lightbox');
-  const lbImg = lightbox.querySelector('img');
-
-  document.querySelectorAll('[data-lightbox-trigger]').forEach(frame => {
-    const img = frame.querySelector('img');
-    frame.addEventListener('click', () => {
-      lbImg.src = img.src;
-      lbImg.alt = img.alt;
-      lightbox.classList.remove('zoomed');
-      lightbox.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    });
-  });
-
-  lbImg.addEventListener('click', (e) => {
-    e.stopPropagation();
-    lightbox.classList.toggle('zoomed');
-  });
-
-  function closeLightbox() {
-    lightbox.classList.remove('active', 'zoomed');
-    lightbox.scrollTop = 0;
-    lightbox.scrollLeft = 0;
-    document.body.style.overflow = '';
-  }
-
-  lightbox.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
-  lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
 </script>
-
 </body>
 </html>
