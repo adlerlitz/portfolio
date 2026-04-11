@@ -408,6 +408,140 @@
     font-weight: 400;
   }
 
+  /* Quest two-column layout */
+  .quest-layout {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .quest-images {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    position: sticky;
+    top: 84px;
+  }
+
+  .quest-img-panel {
+    background: #F5F0E8;
+    border: 1px solid #D8D0BC;
+    padding: 1rem;
+    cursor: zoom-in;
+    position: relative;
+    overflow: hidden;
+    min-height: 180px;
+  }
+
+  .quest-img-overlay {
+    position: absolute;
+    inset: 0 0 auto 0;
+    bottom: 0;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(245, 240, 232, 0.82);
+    opacity: 0;
+    transition: opacity 0.22s ease;
+    pointer-events: none;
+  }
+
+  .quest-img-overlay span {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #5A5040;
+    padding: 7px 16px;
+    border: 1px solid #B8A888;
+  }
+
+  .quest-img-panel:hover .quest-img-overlay {
+    opacity: 1;
+  }
+
+  .quest-img-panel:hover .quest-img-inner {
+    transform: scale(1.03);
+  }
+
+  .quest-img-inner {
+    width: 100%;
+    display: block;
+    transition: transform 0.35s ease;
+    transform-origin: center center;
+  }
+
+  .quest-img-inner img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .quest-img-caption {
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #9A8E7A;
+    margin-top: 0.65rem;
+    font-family: var(--sans);
+  }
+
+  /* Lightbox */
+  .lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    background: rgba(10, 8, 6, 0.92);
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    cursor: zoom-out;
+  }
+
+  .lightbox.open { display: flex; }
+
+  .lightbox-inner {
+    max-width: 90vw;
+    max-height: 90vh;
+    background: #F5F0E8;
+    padding: 1.25rem;
+    position: relative;
+    box-shadow: 0 32px 80px rgba(0,0,0,0.6);
+  }
+
+  .lightbox-inner img {
+    display: block;
+    max-width: 100%;
+    max-height: calc(90vh - 4rem);
+    object-fit: contain;
+  }
+
+  .lightbox-close {
+    position: absolute;
+    top: -1.75rem;
+    right: 0;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    cursor: pointer;
+    font-family: var(--sans);
+    background: none;
+    border: none;
+    padding: 0;
+  }
+
+  .lightbox-close:hover { color: var(--text-secondary); }
+
+  @media (max-width: 900px) {
+    .quest-layout { grid-template-columns: 1fr; }
+    .quest-images { position: static; }
+  }
+
   /* Footer */
   footer {
     padding: 5rem 0;
@@ -479,7 +613,7 @@
       <p class="hero-eyebrow">Narrative Design &amp; Writing</p>
       <h1>Creating stories<br>that feel <em>inevitable</em></h1>
       <p class="hero-body">I write to create moments of fun for the player, and for myself. Video games are where I feel most at home: crafting characters your players will want to travel with, weaving stories that enhance gameplay, and designing mechanics that support the narrative. I'd love to help you build experiences that stay with your players long after they've put down the controller.</p>
-      <a href="mailto:matlakaleksandra@gmail.com" class="hero-cta">Get in touch →</a>
+      <a href="/cdn-cgi/l/email-protection#b8d5d9ccd4d9d3d9d4ddd3cbd9d6dccad9f8dfd5d9d1d496dbd7d5" class="hero-cta">Get in touch →</a>
     </div>
   </section>
 
@@ -490,10 +624,10 @@
         <div class="reveal">
           <p class="section-label">About Me</p>
           <h2>I speak both <em>Creative</em> and Producer</h2>
-          <p>I'm Aleksandra, a narrative designer and writer with 3 years of commercial experience in games. I specialize in quest design, dialogue, worldbuilding, and gameplay-integrated storytelling, with a firm grasp of implementation tools and on-hands experience in Unreal Engine 5 and Unity.</p>
+          <p>I'm Aleksandra, a narrative designer and writer with 3 years of commercial experience in games. I specialize in quest design, dialogue, and gameplay-integrated storytelling, with hands-on in-engine experience in UE5 and Unity.</p>
           <p>Thanks to my degree in English Literature &amp; Culture, I understand language both as a system and a means of communication, making it easy to reach players and publishers alike. I am currently pursuing a Master's in Project Management, further developing my organizational and leadership skills.</p>
           <p>I've collaborated with producers on pitch decks, taken part in publisher meetings, collaborated on localization workflows, and was responsible for actor direction on multiple projects. So if you're looking for someone who can bridge creative and production, I'm your person.</p>
-          <a href="mailto:matlakaleksandra@gmail.com" class="hero-cta" style="margin-top: 2rem;">Send me an email →</a>
+          <a href="/cdn-cgi/l/email-protection#472a26332b262c262b222c34262923352607202a262e2b6924282a" class="hero-cta" style="margin-top: 2rem;">Send me an email →</a>
         </div>
         <div class="reveal" style="transition-delay: 0.15s;">
           <div class="skills-list">
@@ -503,7 +637,7 @@
             </div>
             <div class="skill-row">
               <span class="skill-label">Tools</span>
-              <span class="skill-value">Unity · UE5 · Articy:draft · Twine</span>
+              <span class="skill-value">UE5 · Articy:draft · Unity · Twine</span>
             </div>
             <div class="skill-row">
               <span class="skill-label">Production</span>
@@ -540,6 +674,7 @@
           <span class="tag">Worldbuilding</span>
           <span class="tag">Quest Design</span>
           <span class="tag">Object Descriptions</span>
+          <span class="tag">Guides</span>
         </div>
       </div>
       <div class="project-body reveal">
@@ -547,8 +682,7 @@
           <p>Honeycomb: The World Beyond is an open-world survival game currently in development. I designed quests that introduce the player to core mechanics while remaining fully embedded in the narrative logic — not just onboarding tools, but stories that happen to teach. I tested and iterated on these quests myself to ensure the gameplay integration held up in practice.
 </p>
          <p>I also directed two voice actresses asynchronously, writing recording scripts and detailed direction notes.</p>
-         <p>For the story trailer, I created the initial outline, reviewed the storyboard to make sure the vision remained coherent, wrote all VO dialogue and recording instructions. I also briefed animators on emotional cues and scene-specific requirements and provided feedback in the animation process.</p>
-        </div>
+         <p>For the story trailer, I created the initial outline, reviewed the storyboard to make sure the vision remained coherent, wrote all VO dialogue and recording instructions. I also briefed animators on emotional cues and scene-specific requirements and provided feedback in the animation process.</p>        </div>
         <div class="img-placeholder">Screenshot / Trailer Still</div>
       </div>
     </div>
@@ -612,6 +746,7 @@
         <p style="max-width: 560px;">A branching quest design sample demonstrating character-driven investigation, meaningful player choice, and multi-path resolution with lasting consequences.</p>
       </div>
 
+      <div class="quest-layout">
       <div class="quest-doc reveal">
         <p class="quest-title">Sapsorrow</p>
         <p class="quest-subtitle">Quest Design Document — Sample</p>
@@ -647,44 +782,102 @@
         <ol class="quest-steps">
           <li class="quest-step">
             <span class="step-num">01</span>
-            <p class="step-text"><strong>Defend yourself.</strong> The PC is ambushed by sentient vine-like creatures, unlike anything they've encountered before.</p>
+            <p class="step-text"><strong>Defend yourself!</strong> The PC is ambushed by sentient vine-like creatures, unlike anything they've ever encountered before.</p>
           </li>
           <li class="quest-step">
             <span class="step-num">02</span>
-            <p class="step-text"><strong>Speak with locals.</strong> Sympathetic but reluctant, they direct the PC to Tyrell or Aria depending on personal views — they seem aware of the problem.</p>
+            <p class="step-text"><strong>Speak with the locals about the aberrations.</strong> The locals will direct the PC to Tyrell or Aria depending on their personal views. They are sympathetic but reluctant to divulge more information — it seems they are aware of the problem.</p>
           </li>
           <li class="quest-step">
             <span class="step-num">03</span>
-            <p class="step-text"><strong>Choose your contact.</strong> Tyrell hires the PC to investigate the tree. Aria shows her clinic and the miracles the Tree has performed — and offers side-quests. A PC following Tyrell can still help Aria.</p>
+            <p class="step-text"><strong>Speak with Tyrell or Aria.</strong> Both offer the PC means to heal their injuries. Tyrell will hire the PC to investigate the tree and promise a monetary incentive as well as potential access to his weapon stash, while Aria will show them her clinic and the miracles the Tree has performed in Mournstead. She will also offer side-quests that deepen the PC's involvement with the population. A PC following Tyrell's quest can still help Aria out, even if the NPCs are at odds.</p>
           </li>
           <li class="quest-step">
             <span class="step-num">04</span>
-            <p class="step-text"><strong>Investigate the Tree.</strong> Using Nature, Investigation, History, or Religion skills — or the local library — the PC learns the Tree draws power from murdered travelers. Additional lore scales with rolls and knowledge sources.</p>
+            <p class="step-text"><strong>Investigate the Tree.</strong> The PC can examine the Tree using their skills (Nature, Investigation, History, or Religion), or scour the local library for information. If they succeed on either, they will learn that the Tree most likely draws its powers from the travelers murdered by its minions — with additional lore provided depending on the roll, information source, and abilities. When interacting with the Tree, the PC also has the option to simply grab a fruit of life or a branch for themselves, either for monetary gain or crafting.</p>
           </li>
           <li class="quest-step">
             <span class="step-num">05</span>
-            <p class="step-text"><strong>Pick a course of action.</strong> Persuade Aria the Tree does more harm than good. Lie to Tyrell for personal gain — fruit, branches, crafting items. Or pursue another path entirely.</p>
+            <p class="step-text"><strong>Pick a course of action.</strong> Depending on the breadth of knowledge they uncover and a Persuasion roll, the PC might persuade Aria that the Tree does more harm than good and get her help in communing with its spirit to end the trouble — or lie to Tyrell about the results of their investigation, ending it prematurely and preserving the status quo. If they do not succeed in convincing Aria to help, the final battle against the Tree will be more challenging.</p>
           </li>
           <li class="quest-step">
             <span class="step-num">06</span>
-            <p class="step-text"><strong>Face the Tree Spirit.</strong> Attacks if summoned without proper ritual, or if the PC takes a branch. If Aria is present, she barely survives — the Tree trusts her for her longtime service.</p>
+            <p class="step-text"><strong>Face the Tree Spirit.</strong> The spirit will attack if summoned by the PC or Aria — either via a ritual learned at the library or from Aria, or by crudely provoking it. Provocation makes the battle tougher, as the Tree Spirit will use its vine-like minions. If the PC summons or provokes the Spirit themselves, they must also engage in a mental battle, fighting a Fear spell before they can attack the Tree.</p>
           </li>
           <li class="quest-step">
             <span class="step-num">07</span>
-            <p class="step-text"><strong>Make your final choice.</strong> If Aria was harmed, she becomes dependent on the Tree. Sacrifice herself for the town? Join the party searching for another solution — losing Tyrell's favor? Or destroy the Tree, killing Aria, but gaining a prosperous ally town with lower trade prices and mercs for hire.</p>
+            <p class="step-text"><strong>Make your final choice.</strong> If Aria is present at the summoning, she gets injured and becomes dependent on the Tree for survival — she can be convinced to sacrifice herself for the good of the town, or invited to join the party to search for another solution, at the cost of Tyrell's favor. Alternatively, the PC can destroy the Tree, killing Aria, but gaining a friendly town on its way to prosperity: lower trade prices and mercenaries for hire. If Aria is absent during the battle, the Tree can be destroyed, but she will never forgive the PC for desecrating a holy site and will seek to recreate it.</p>
           </li>
         </ol>
+
+        <p class="quest-section-head">Consequences</p>
+        <ol class="quest-steps">
+          <li class="quest-step">
+            <span class="step-num">·</span>
+            <p class="step-text">If the PC <strong>doesn't defeat the Tree Spirit</strong>, Mournstead will soon fall prey to the Tree, becoming a town full of mindless thralls.</p>
+          </li>
+          <li class="quest-step">
+            <span class="step-num">·</span>
+            <p class="step-text">If the PC <strong>takes a branch or fruit and doesn't confront the Spirit</strong>, they gain a permanent tie to the Tree: a cursed weapon (from the branch) or a cursed stat upgrade (from the fruit). This may lead to future quests.</p>
+          </li>
+          <li class="quest-step">
+            <span class="step-num">·</span>
+            <p class="step-text">If the PC <strong>lies to Tyrell to preserve the status quo</strong>, Tyrell learns the truth early enough to flee with a few close allies — and puts a bounty on the PC's head.</p>
+          </li>
+          <li class="quest-step">
+            <span class="step-num">·</span>
+            <p class="step-text">If <strong>Aria dies</strong>, Mournstead goes without a healer, putting other NPCs at risk and affecting the inhabitants' attitude toward the PC.</p>
+          </li>
+          <li class="quest-step">
+            <span class="step-num">·</span>
+            <p class="step-text">If <strong>Aria is recruited</strong>, the PC has a chance to use her druid connections to find another healer for Mournstead, avoiding the above.</p>
+          </li>
+          <li class="quest-step">
+            <span class="step-num">·</span>
+            <p class="step-text">If <strong>Aria is absent for the final battle</strong>, she will lose any trust she had in the PC and seek to create another Tree of Life.</p>
+          </li>
+          <li class="quest-step">
+            <span class="step-num">·</span>
+            <p class="step-text">If the PC <strong>cooperates with Tyrell</strong>, they are granted additional privileges as an ally of the local sheriff, including access to weapon options that are otherwise inaccessible.</p>
+          </li>
+        </ol>
+      </div><!-- end quest-doc -->
+
+      <div class="quest-images reveal" style="transition-delay:0.15s;">
+        <div class="quest-img-panel" onclick="openLightbox('flowchart-quest.png', 'Quest flowchart')">
+          <div class="quest-img-inner">
+            <img src="flowchart-quest.png" alt="Sapsorrow quest flowchart" onerror="this.style.display='none';">
+          </div>
+          <div class="quest-img-overlay"><span>Click to enlarge</span></div>
+          <p class="quest-img-caption">Quest flowchart</p>
+        </div>
+        <div class="quest-img-panel" onclick="openLightbox('flowchart-consequences.png', 'Consequences flowchart')">
+          <div class="quest-img-inner">
+            <img src="flowchart-consequences.png" alt="Sapsorrow consequences flowchart" onerror="this.style.display='none';">
+          </div>
+          <div class="quest-img-overlay"><span>Click to enlarge</span></div>
+          <p class="quest-img-caption">Consequences flowchart</p>
+        </div>
       </div>
+
+      </div><!-- end quest-layout -->
 
     </div>
   </section>
 
 </main>
 
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+  <div class="lightbox-inner">
+    <button class="lightbox-close" onclick="document.getElementById('lightbox').classList.remove('open')">Close ✕</button>
+    <img id="lightbox-img" src="" alt="">
+  </div>
+</div>
+
 <footer>
   <div class="container">
     <p class="footer-name">Aleksandra Matlak</p>
-    <a href="mailto:matlakaleksandra@gmail.com" class="footer-email">matlakaleksandra@gmail.com</a>
+    <a href="/cdn-cgi/l/email-protection#5835392c34393339343d332b39363c2a39183f35393134763b3735" class="footer-email"><span class="__cf_email__" data-cfemail="80ede1f4ece1ebe1ece5ebf3e1eee4f2e1c0e7ede1e9ecaee3efed">[email&#160;protected]</span></a>
   </div>
 </footer>
 
@@ -696,6 +889,24 @@
   document.querySelectorAll('.reveal').forEach((el, i) => {
     el.style.transitionDelay = el.style.transitionDelay || (i % 3 * 0.1) + 's';
     observer.observe(el);
+  });
+
+  function openLightbox(src, alt) {
+    const lb = document.getElementById('lightbox');
+    const img = document.getElementById('lightbox-img');
+    img.src = src;
+    img.alt = alt;
+    lb.classList.add('open');
+  }
+
+  function closeLightbox(e) {
+    if (e.target === document.getElementById('lightbox')) {
+      document.getElementById('lightbox').classList.remove('open');
+    }
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') document.getElementById('lightbox').classList.remove('open');
   });
 </script>
 </body>
