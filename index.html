@@ -124,17 +124,6 @@
     overflow: hidden;
   }
 
-  #hero::after {
-    content: '';
-    position: absolute;
-    top: -40%;
-    right: -20%;
-    width: 700px;
-    height: 700px;
-    background: radial-gradient(ellipse at center, rgba(196, 149, 53, 0.055) 0%, transparent 65%);
-    pointer-events: none;
-  }
-
   .hero-eyebrow {
     font-size: 11px;
     letter-spacing: 0.2em;
@@ -613,8 +602,9 @@
   <!-- Hero -->
   <section id="hero">
     <div class="container">
+      <div id="hero-glow" style="position:absolute;top:-40%;right:-20%;width:700px;height:700px;background:radial-gradient(ellipse at center,rgba(196,149,53,0.055) 0%,transparent 65%);pointer-events:none;will-change:transform;"></div>
       <p class="hero-eyebrow">Narrative Design &amp; Writing</p>
-      <h1>Writing for games<br>and <em>for people</em></h1>
+      <h1 id="hero-headline">Writing for games<br>and <em>for people</em></h1>
       <p class="hero-body">I write to create moments of fun for the player, and for myself. Video games are where I feel most at home: crafting characters your players will want to travel with, weaving stories that enhance gameplay, and designing mechanics that support the narrative. I'd love to help you build experiences that stay with your players long after they've put down the controller.</p>
       <a href="mailto:matlakaleksandra@gmail.com" class="hero-cta">Get in touch →</a>
     </div>
@@ -972,6 +962,70 @@
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape') document.getElementById('lightbox').classList.remove('open');
   });
+  // Typewriter
+  const headline = document.getElementById('hero-headline');
+  const segments = [
+    { text: 'Creating stories\nthat feel ', em: false },
+    { text: 'inevitable', em: true }
+  ];
+  let segIndex = 0, charIndex = 0;
+  let current = document.createTextNode('');
+  let br = null;
+
+  function buildHeadline() {
+    headline.innerHTML = '';
+    const first = document.createTextNode('');
+    headline.appendChild(first);
+    br = document.createElement('br');
+    headline.appendChild(br);
+    const second = document.createTextNode('');
+    headline.appendChild(second);
+    const em = document.createElement('em');
+    headline.appendChild(em);
+    return { first, second, em };
+  }
+
+  const nodes = buildHeadline();
+
+  function type() {
+    const lines = segments[0].text.split('\n');
+    const line1 = lines[0], line2 = lines[1];
+    const fullPlain = line1 + '\n' + line2;
+    const fullEm = segments[1].text;
+    const totalPlain = fullPlain.length;
+    const totalEm = fullEm.length;
+    let p = 0, e = 0;
+
+    function tick() {
+      if (p < totalPlain) {
+        const ch = fullPlain[p];
+        if (ch === '\n') {
+          nodes.first.textContent = fullPlain.slice(0, p);
+        } else if (p < line1.length) {
+          nodes.first.textContent = fullPlain.slice(0, p + 1);
+        } else {
+          nodes.first.textContent = line1;
+          nodes.second.textContent = fullPlain.slice(line1.length + 1, p + 1);
+        }
+        p++;
+        setTimeout(tick, 38);
+      } else if (e < totalEm) {
+        nodes.em.textContent = fullEm.slice(0, e + 1);
+        e++;
+        setTimeout(tick, 52);
+      }
+    }
+    tick();
+  }
+
+  window.addEventListener('load', () => setTimeout(type, 300));
+
+  // Parallax glow
+  const glow = document.getElementById('hero-glow');
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    glow.style.transform = `translateY(${y * 0.25}px)`;
+  }, { passive: true });
 </script>
 </body>
 </html>
