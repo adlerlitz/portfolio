@@ -989,10 +989,9 @@
   const segments = [
     { text: 'Stories that build\n', em: false },
     { text: 'your', em: true },
-    { text: ' games', em: false },
+    { text: ' games', em: false }, // The part that wasn't appearing
   ];
-  let segIndex = 0, charIndex = 0;
-  let current = document.createTextNode('');
+  
   let br = null;
 
   function buildHeadline() {
@@ -1005,7 +1004,12 @@
     headline.appendChild(second);
     const em = document.createElement('em');
     headline.appendChild(em);
-    return { first, second, em };
+    
+    // FIX 1: Create a node to hold the text AFTER the <em> tag
+    const last = document.createTextNode('');
+    headline.appendChild(last);
+    
+    return { first, second, em, last };
   }
 
   const nodes = buildHeadline();
@@ -1015,15 +1019,20 @@
     const line1 = lines[0], line2 = lines[1];
     const fullPlain = line1 + '\n' + line2;
     const fullEm = segments[1].text;
+    const fullLast = segments[2].text; // FIX 2: Define the last segment
+
     const totalPlain = fullPlain.length;
     const totalEm = fullEm.length;
-    let p = 0, e = 0;
+    const totalLast = fullLast.length; // FIX 3: Get length of last segment
+
+    let p = 0, e = 0, l = 0; // 'l' for last segment index
 
     function tick() {
+      // Phase 1: Type the first two lines
       if (p < totalPlain) {
         const ch = fullPlain[p];
         if (ch === '\n') {
-          nodes.first.textContent = fullPlain.slice(0, p);
+          nodes.first.textContent = line1;
         } else if (p < line1.length) {
           nodes.first.textContent = fullPlain.slice(0, p + 1);
         } else {
@@ -1032,14 +1041,24 @@
         }
         p++;
         setTimeout(tick, 38);
-      } else if (e < totalEm) {
+      } 
+      // Phase 2: Type the <em> segment ("your")
+      else if (e < totalEm) {
         nodes.em.textContent = fullEm.slice(0, e + 1);
         e++;
         setTimeout(tick, 52);
       }
+      // FIX 4: Phase 3 - Type the final segment (" games")
+      else if (l < totalLast) {
+        nodes.last.textContent = fullLast.slice(0, l + 1);
+        l++;
+        setTimeout(tick, 45); // Speed for the final word
+      }
     }
     tick();
   }
+
+  window.addEventListener('load', () => setTimeout(type, 300));
 
   window.addEventListener('load', () => setTimeout(type, 300));
 
