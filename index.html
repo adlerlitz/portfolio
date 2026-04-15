@@ -625,7 +625,7 @@
     <div id="hero-glow" style="position:absolute;top:-40%;right:-20%;width:700px;height:700px;background:radial-gradient(ellipse at center,rgba(196,149,53,0.18) 0%,transparent 65%);pointer-events:none;will-change:transform;"></div>
     <div class="container">
       <p class="hero-eyebrow">Narrative Design &amp; Writing</p>
-      <h1 id="hero-headline">Stories that build<br>your <em>games</em></h1>
+      <h1 id="hero-headline">Stories that build<br><em>your</em> games</h1>
       <p class="hero-body">I write to create moments of fun for the player, and for myself. Video games are where I feel most at home: crafting characters your players will want to travel with, weaving stories that enhance gameplay, and designing mechanics that support the narrative. I'd love to help you build experiences that stay with your players long after they've put down the controller.</p>
       <a href="mailto:matlakaleksandra@gmail.com" class="hero-cta">Get in touch →</a>
     </div>
@@ -987,8 +987,9 @@
   // Typewriter
   const headline = document.getElementById('hero-headline');
   const segments = [
-    { text: 'Stories that build\n your ', em: false },
-    { text: 'games', em: true }
+    { text: 'Stories that build\n', em: false },
+    { text: 'your', em: true },
+    {text: ' games', em: false }
   ];
   let segIndex = 0, charIndex = 0;
   let current = document.createTextNode('');
