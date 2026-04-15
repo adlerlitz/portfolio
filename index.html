@@ -479,16 +479,24 @@
 
   /* Lightbox */
   .lightbox {
-    display: none;
-    position: fixed;
-    inset: 0;
-    z-index: 10000;
-    background: rgba(10, 8, 6, 0.92);
-    align-items: center;
-    justify-content: center;
-    padding: 2rem;
-    cursor: zoom-out;
-  }
+  opacity: 0;
+  visibility: hidden;
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: rgba(10, 8, 6, 0.92);
+  display: flex; /* Always flex, just hidden */
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  cursor: zoom-out;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.lightbox.open {
+  opacity: 1;
+  visibility: visible;
+}
 
   .lightbox.open { display: flex; }
 
@@ -579,6 +587,20 @@
     .quest-doc { padding: 2rem 1.5rem; }
     h1 { font-size: 3rem; }
   }
+
+  ::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-accent);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--amber-dim);
+}
 </style>
 </head>
 <body>
@@ -603,7 +625,7 @@
     <div id="hero-glow" style="position:absolute;top:-40%;right:-20%;width:700px;height:700px;background:radial-gradient(ellipse at center,rgba(196,149,53,0.18) 0%,transparent 65%);pointer-events:none;will-change:transform;"></div>
     <div class="container">
       <p class="hero-eyebrow">Narrative Design &amp; Writing</p>
-      <h1 id="hero-headline">Writing for games<br>and <em>for people</em></h1>
+      <h1 id="hero-headline">Stories that build<br>your <em>games</em></h1>
       <p class="hero-body">I write to create moments of fun for the player, and for myself. Video games are where I feel most at home: crafting characters your players will want to travel with, weaving stories that enhance gameplay, and designing mechanics that support the narrative. I'd love to help you build experiences that stay with your players long after they've put down the controller.</p>
       <a href="mailto:matlakaleksandra@gmail.com" class="hero-cta">Get in touch →</a>
     </div>
